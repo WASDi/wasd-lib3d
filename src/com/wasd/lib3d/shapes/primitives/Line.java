@@ -1,8 +1,9 @@
-package com.wasd.lib3d.shapes;
+package com.wasd.lib3d.shapes.primitives;
 
 import com.wasd.lib3d.Camera;
-import com.wasd.lib3d.shapes.drawable.DrawableDot;
-import com.wasd.lib3d.shapes.drawable.DrawableLine;
+import com.wasd.lib3d.shapes.Shape;
+import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
+import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 
 import java.util.ArrayList;
 import java.util.Collections;

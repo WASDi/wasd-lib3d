@@ -1,4 +1,4 @@
-package com.wasd.lib3d.shapes.drawable;
+package com.wasd.lib3d.shapes.primitives.drawable;
 
 import java.awt.*;
 
