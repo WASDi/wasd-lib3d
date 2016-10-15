@@ -3,6 +3,7 @@ package com.wasd.lib3d;
 import com.wasd.lib3d.shapes.Box;
 import com.wasd.lib3d.shapes.Shape;
 import com.wasd.lib3d.shapes.drawable.DrawableDot;
+import com.wasd.lib3d.shapes.drawable.DrawableLine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,6 +60,11 @@ public class Panel3D extends JPanel {
                 int dotDrawSize = Math.round(drawableDot.getSize());
                 g.setColor(drawableDot.getColor());
                 g.fillOval(Math.round(pixelX), Math.round(pixelY), dotDrawSize, dotDrawSize);
+            }
+            for (DrawableLine drawableLine : shape.getDrawableLinesAfterCalculation()) {
+                //...
+                g.setColor(drawableLine.getColor());
+                //g.drawLine(x1, y1, x2, y2);
             }
         }
     }

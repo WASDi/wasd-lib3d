@@ -2,8 +2,10 @@ package com.wasd.lib3d.shapes;
 
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.shapes.drawable.DrawableDot;
+import com.wasd.lib3d.shapes.drawable.DrawableLine;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Dot implements Shape {
 
@@ -34,6 +36,11 @@ public class Dot implements Shape {
     @Override
     public Iterable<DrawableDot> getDrawableDotsAfterCalculation() {
         return singletonList;
+    }
+
+    @Override
+    public Iterable<DrawableLine> getDrawableLinesAfterCalculation() {
+        return Collections.<DrawableLine>emptyList();
     }
 
     public DrawableDot getDrawable() {

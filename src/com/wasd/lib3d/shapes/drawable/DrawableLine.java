@@ -1,4 +1,11 @@
 package com.wasd.lib3d.shapes.drawable;
 
-public class DrawableLine {
+import java.awt.*;
+
+public class DrawableLine implements Drawable {
+
+    @Override
+    public Color getColor() {
+        return Color.CYAN;
+    }
 }
