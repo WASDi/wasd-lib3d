@@ -8,21 +8,11 @@ import java.util.ArrayList;
 
 public class Box implements Shape {
 
-    private float x;
-    private float y;
-    private float z;
-    private float size;
-
     private final ArrayList<Dot> dots = new ArrayList<>(8);
     private final ArrayList<DrawableDot> dotsAsDrawable = new ArrayList<>(8);
 
 
     public Box(float x, float y, float z, float size) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.size = size;
-
         dots.add(new Dot(x + size, y + size, z + size));
         dots.add(new Dot(x + size, y + size, z - size));
         dots.add(new Dot(x + size, y - size, z + size));
