@@ -36,7 +36,20 @@ public class Box implements Shape {
     }
 
     private void initLinesBetweenDots() {
-        lines.add(new Line(dots.get(0), dots.get(7))); //TODO do correctly
+        lines.add(new Line(dots.get(0), dots.get(1)));
+        lines.add(new Line(dots.get(0), dots.get(2)));
+        lines.add(new Line(dots.get(3), dots.get(1)));
+        lines.add(new Line(dots.get(3), dots.get(2)));
+
+        lines.add(new Line(dots.get(4), dots.get(5)));
+        lines.add(new Line(dots.get(4), dots.get(6)));
+        lines.add(new Line(dots.get(7), dots.get(5)));
+        lines.add(new Line(dots.get(7), dots.get(6)));
+
+        lines.add(new Line(dots.get(0), dots.get(4)));
+        lines.add(new Line(dots.get(1), dots.get(5)));
+        lines.add(new Line(dots.get(2), dots.get(6)));
+        lines.add(new Line(dots.get(3), dots.get(7)));
 
         lines.forEach(dot -> linesAsDrawable.add(dot.getDrawable()));
     }

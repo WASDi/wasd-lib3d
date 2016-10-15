@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class Dot implements Shape {
 
-    public static final float DOT_SIZE_FACTOR = 15f;
+    public static final float DOT_SIZE_FACTOR = 5f;
     private float x;
     private float y;
     private float z;

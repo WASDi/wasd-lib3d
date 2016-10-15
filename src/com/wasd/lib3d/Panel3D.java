@@ -28,9 +28,10 @@ public class Panel3D extends JPanel {
         for (int x = 0; x < 2; x++) {
             for (int y = 0; y < 2; y++) {
                 shapes.add(
-                        new Box(x / 2f - .25f,
-                                y / 2f - .25f, 1,
-                                .07f).withColor(colors[x][y])
+                        new Box(x / 4f - .125f,
+                                y / 4f - .125f,
+                                .7f,
+                                .1f).withColor(colors[x][y])
                 );
             }
         }
@@ -49,11 +50,21 @@ public class Panel3D extends JPanel {
         g.setColor(BACKGROUND_LIGHT_GRAY);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        int centerX = getWidth() / 2;
-        int centerY = getHeight() / 2;
+        calculate();
+        drawAllLines(g);
+        drawAllDots(g);
+    }
 
+    private void calculate() {
         for (Shape shape : shapes) {
             shape.calculateDotsAndLinesToDraw(camera);
+        }
+    }
+
+    private void drawAllLines(Graphics g) {
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+        for (Shape shape : shapes) {
             for (DrawableLine drawableLine : shape.getDrawableLinesAfterCalculation()) {
                 float pixelX1 = centerX + drawableLine.getX1() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
                 float pixelY1 = centerY + drawableLine.getY1() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
@@ -63,6 +74,13 @@ public class Panel3D extends JPanel {
                 g.drawLine(Math.round(pixelX1), Math.round(pixelY1),
                         Math.round(pixelX2), Math.round(pixelY2));
             }
+        }
+    }
+
+    private void drawAllDots(Graphics g) {
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+        for (Shape shape : shapes) {
             for (DrawableDot drawableDot : shape.getDrawableDotsAfterCalculation()) {
                 float pixelX = centerX + drawableDot.getX() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
                 float pixelY = centerY + drawableDot.getY() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
