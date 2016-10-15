@@ -21,7 +21,7 @@ public class Dot implements Shape {
         this.x = x;
         this.y = y;
         this.z = z;
-        singletonList.add(drawable); //MAYBETODO optimize with singleton iterable?
+        singletonList.add(drawable);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class Box implements Shape {
     }
 
     private void initLinesBetweenDots() {
-
+        lines.add(new Line(dots.get(0), dots.get(7))); //TODO do correctly
 
         lines.forEach(dot -> linesAsDrawable.add(dot.getDrawable()));
     }
@@ -44,6 +44,7 @@ public class Box implements Shape {
     @Override
     public void calculateDotsAndLinesToDraw(Camera camera) {
         dots.forEach(dot -> dot.calculateDotsAndLinesToDraw(camera));
+        lines.forEach(line -> line.calculateDotsAndLinesToDraw(camera));
     }
 
     @Override

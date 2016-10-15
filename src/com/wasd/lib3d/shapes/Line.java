@@ -4,6 +4,7 @@ import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.shapes.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.drawable.DrawableLine;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class Line implements Shape {
@@ -13,14 +14,22 @@ public class Line implements Shape {
     private final Dot fromDot;
     private final Dot toDot;
 
+    private ArrayList<DrawableLine> singletonList = new ArrayList<>(1);
+
     public Line(Dot fromDot, Dot toDot) {
         this.fromDot = fromDot;
         this.toDot = toDot;
+
+        singletonList.add(drawable);
     }
 
     @Override
     public void calculateDotsAndLinesToDraw(Camera camera) {
+        drawable.updateX1(fromDot.getDrawable().getX());
+        drawable.updateY1(fromDot.getDrawable().getY());
 
+        drawable.updateX2(toDot.getDrawable().getX());
+        drawable.updateY2(toDot.getDrawable().getY());
     }
 
     @Override
@@ -30,7 +39,7 @@ public class Line implements Shape {
 
     @Override
     public Iterable<DrawableLine> getDrawableLinesAfterCalculation() {
-        throw new UnsupportedOperationException("MUST DO");
+        return singletonList;
     }
 
     public DrawableLine getDrawable() {

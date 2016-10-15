@@ -54,17 +54,22 @@ public class Panel3D extends JPanel {
 
         for (Shape shape : shapes) {
             shape.calculateDotsAndLinesToDraw(camera);
+            for (DrawableLine drawableLine : shape.getDrawableLinesAfterCalculation()) {
+                float pixelX1 = centerX + drawableLine.getX1() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                float pixelY1 = centerY + drawableLine.getY1() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                float pixelX2 = centerX + drawableLine.getX2() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                float pixelY2 = centerY + drawableLine.getY2() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                g.setColor(drawableLine.getColor());
+                g.drawLine(Math.round(pixelX1), Math.round(pixelY1),
+                        Math.round(pixelX2), Math.round(pixelY2));
+            }
             for (DrawableDot drawableDot : shape.getDrawableDotsAfterCalculation()) {
                 float pixelX = centerX + drawableDot.getX() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
                 float pixelY = centerY + drawableDot.getY() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
                 int dotDrawSize = Math.round(drawableDot.getSize());
                 g.setColor(drawableDot.getColor());
-                g.fillOval(Math.round(pixelX), Math.round(pixelY), dotDrawSize, dotDrawSize);
-            }
-            for (DrawableLine drawableLine : shape.getDrawableLinesAfterCalculation()) {
-                //...
-                g.setColor(drawableLine.getColor());
-                //g.drawLine(x1, y1, x2, y2);
+                g.fillOval(Math.round(pixelX - dotDrawSize / 2f), Math.round(pixelY - dotDrawSize / 2f),
+                        dotDrawSize, dotDrawSize);
             }
         }
     }
