@@ -1,5 +1,7 @@
 package com.wasd.lib3d;
 
+import com.wasd.lib3d.shapes.Shape;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,10 +18,16 @@ public class Window3D extends JFrame {
         panel3D = new Panel3D();
         add(panel3D);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
 
         mouseForUpdatingCamera = new MouseForUpdatingCamera(panel3D);
         panel3D.addFullMouseListener(mouseForUpdatingCamera);
     }
 
+    public void addShape(Shape shape) {
+        panel3D.addShape(shape);
+    }
+
+    public void letsGetStarted() {
+        setVisible(true);
+    }
 }

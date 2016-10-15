@@ -1,6 +1,5 @@
 package com.wasd.lib3d;
 
-import com.wasd.lib3d.shapes.Box;
 import com.wasd.lib3d.shapes.Shape;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
@@ -22,20 +21,6 @@ public class Panel3D extends JPanel {
 
     public Panel3D() {
         camera = new Camera();
-
-        Color[][] colors = {{Color.RED, Color.GREEN}, {Color.BLUE, Color.YELLOW}};
-
-        for (int x = 0; x < 2; x++) {
-            for (int y = 0; y < 2; y++) {
-                shapes.add(
-                        new Box(x / 4f - .125f,
-                                y / 4f - .125f,
-                                .7f,
-                                .1f).withColor(colors[x][y])
-                );
-            }
-        }
-
     }
 
     public void addFullMouseListener(MouseAdapter mouseAdapter) {
@@ -101,5 +86,9 @@ public class Panel3D extends JPanel {
     public void onMouseScroll(float scrollAmount) {
         camera.relativeZMovement(scrollAmount);
         repaint();
+    }
+
+    public void addShape(Shape shape) {
+        shapes.add(shape);
     }
 }
