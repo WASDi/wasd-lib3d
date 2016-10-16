@@ -19,11 +19,12 @@ public abstract class Shape {
     public Shape(int numDots, int numLines) {
         dots = new ArrayList<>(numDots);
         dotsAsDrawable = new ArrayList<>(numDots);
+
         lines = new ArrayList<>(numLines);
         linesAsDrawable = new ArrayList<>(numLines);
     }
 
-    public abstract void calculateDotsAndLinesToDraw(Camera camera);
+    public abstract void updateDrawables(Camera camera);
 
     public Iterable<DrawableDot> getDrawableDotsAfterCalculation() {
         return dotsAsDrawable;

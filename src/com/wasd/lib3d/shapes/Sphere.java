@@ -19,7 +19,7 @@ public class Sphere extends Shape {
     }
 
     @Override
-    public void calculateDotsAndLinesToDraw(Camera camera) {
+    public void updateDrawables(Camera camera) {
 
     }
 }

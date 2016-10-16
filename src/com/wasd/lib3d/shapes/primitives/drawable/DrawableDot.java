@@ -1,6 +1,6 @@
 package com.wasd.lib3d.shapes.primitives.drawable;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class DrawableDot implements Drawable {
 

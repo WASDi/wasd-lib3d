@@ -6,7 +6,7 @@ import com.wasd.lib3d.shapes.primitives.Line;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class Box extends Shape {
 
@@ -50,9 +50,9 @@ public class Box extends Shape {
     }
 
     @Override
-    public void calculateDotsAndLinesToDraw(Camera camera) {
-        dots.forEach(dot -> dot.update(camera));
-        lines.forEach(line -> line.update(camera));
+    public void updateDrawables(Camera camera) {
+        dots.forEach(dot -> dot.updateDrawable(camera));
+        lines.forEach(line -> line.updateDrawable(camera));
     }
 
     @Override

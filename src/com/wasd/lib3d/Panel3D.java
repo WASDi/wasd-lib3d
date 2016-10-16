@@ -4,8 +4,9 @@ import com.wasd.lib3d.shapes.Shape;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +36,14 @@ public class Panel3D extends JPanel {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        calculate();
+        updateDrawables();
         drawAllLines(g);
         drawAllDots(g);
     }
 
-    private void calculate() {
+    private void updateDrawables() {
         for (Shape shape : shapes) {
-            shape.calculateDotsAndLinesToDraw(camera);
+            shape.updateDrawables(camera);
         }
     }
 

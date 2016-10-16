@@ -3,7 +3,7 @@ package com.wasd.lib3d.shapes.primitives;
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 
-public class Dot {
+public class Dot implements PrimitiveShape<DrawableDot> {
 
     public static final float DOT_SIZE_FACTOR = 10f;
     private float x;
@@ -18,7 +18,8 @@ public class Dot {
         this.z = z;
     }
 
-    public void update(Camera camera) {
+    @Override
+    public void updateDrawable(Camera camera) {
         float factorStepAwayFromCenter = 1 / (z - camera.getPosZ());
 
         drawable.updateX(camera.getPosX() * factorStepAwayFromCenter + x * factorStepAwayFromCenter);
@@ -26,6 +27,7 @@ public class Dot {
         drawable.updateSize(DOT_SIZE_FACTOR * factorStepAwayFromCenter);
     }
 
+    @Override
     public DrawableDot getDrawable() {
         return drawable;
     }
