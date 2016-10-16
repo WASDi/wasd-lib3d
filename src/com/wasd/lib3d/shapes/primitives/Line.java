@@ -19,10 +19,10 @@ public class Line implements PrimitiveShape<DrawableLine> {
     public void updateDrawable(Camera camera) {
         float cameraPosZ = camera.getPosZ() + MIN_DISTANCE_FROM_CAMERA;
         if (fromDot.getZ() < cameraPosZ || toDot.getZ() < cameraPosZ) {
-            drawable.setOutsideScreen(true);
+            drawable.setShouldRender(true);
             return;
         }
-        drawable.setOutsideScreen(false);
+        drawable.setShouldRender(false);
 
         drawable.updateX1(fromDot.getDrawable().getX());
         drawable.updateY1(fromDot.getDrawable().getY());

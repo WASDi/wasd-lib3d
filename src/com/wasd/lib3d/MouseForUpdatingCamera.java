@@ -6,7 +6,7 @@ import java.awt.event.MouseWheelEvent;
 
 public class MouseForUpdatingCamera extends MouseAdapter {
 
-    private static final float SCROLL_FACTOR = .02f;
+    private static final float SCROLL_FACTOR = .015f;
 
     private final Panel3D cameraPanel;
 

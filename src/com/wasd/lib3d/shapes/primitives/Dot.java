@@ -5,7 +5,7 @@ import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 
 public class Dot implements PrimitiveShape<DrawableDot> {
 
-    private static final float DOT_SIZE_FACTOR = 2f;
+    private static final float DOT_SIZE_FACTOR = 3f;
 
     private float x;
     private float y;
@@ -34,10 +34,10 @@ public class Dot implements PrimitiveShape<DrawableDot> {
     @Override
     public void updateDrawable(Camera camera) {
         if (z < (camera.getPosZ() + MIN_DISTANCE_FROM_CAMERA)) {
-            drawable.setOutsideScreen(true);
+            drawable.setShouldRender(true);
             return;
         }
-        drawable.setOutsideScreen(false);
+        drawable.setShouldRender(false);
 
         float factorStepAwayFromCenter = 1 / (z - camera.getPosZ());
 

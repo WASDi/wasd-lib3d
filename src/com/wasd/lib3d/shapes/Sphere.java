@@ -26,8 +26,9 @@ public class Sphere extends Shape {
         dots.add(bottomDot);
 
         for (int ring = 0; ring < RESOLUTION_Y; ring++) {
-            float ringY = topDot.getY() + size * (ring + 1f) / (RESOLUTION_Y + 1);
-            float ringRadius = (float) Math.sin(PI * (ring + 1f) / (RESOLUTION_Y + 1));
+            float ringLinearIndexTimesPi = PI * (ring + 1f) / (RESOLUTION_Y + 1);
+            float ringY = y - halfSize * (float) Math.cos(ringLinearIndexTimesPi);
+            float ringRadius = (float) Math.sin(ringLinearIndexTimesPi);
             for (int pointInRing = 0; pointInRing < RESOLUTION_X; pointInRing++) {
                 float dotX = x + ringRadius * halfSize * (float) Math.cos(TWO_PI * pointInRing / RESOLUTION_X);
                 float dotZ = z + ringRadius * halfSize * (float) Math.sin(TWO_PI * pointInRing / RESOLUTION_X);

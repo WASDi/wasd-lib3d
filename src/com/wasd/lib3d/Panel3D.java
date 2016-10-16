@@ -52,7 +52,7 @@ public class Panel3D extends JPanel {
         int centerY = getHeight() / 2;
         for (Shape shape : shapes) {
             for (DrawableLine drawableLine : shape.getDrawableLinesAfterCalculation()) {
-                if (drawableLine.isOutsideScreen()) {
+                if (drawableLine.shouldRender()) {
                     continue;
                 }
                 float pixelX1 = centerX + drawableLine.getX1() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
@@ -72,7 +72,7 @@ public class Panel3D extends JPanel {
         int centerY = getHeight() / 2;
         for (Shape shape : shapes) {
             for (DrawableDot drawableDot : shape.getDrawableDotsAfterCalculation()) {
-                if (drawableDot.isOutsideScreen()) {
+                if (drawableDot.shouldRender()) {
                     continue;
                 }
                 float pixelX = centerX + drawableDot.getX() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;

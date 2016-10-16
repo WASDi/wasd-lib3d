@@ -4,14 +4,14 @@ import java.awt.Color;
 
 public abstract class Drawable {
 
-    private boolean outsideScreen;
+    private boolean shouldRender;
 
-    public boolean isOutsideScreen() {
-        return outsideScreen;
+    public boolean shouldRender() {
+        return shouldRender;
     }
 
-    public void setOutsideScreen(boolean outsideScreen) {
-        this.outsideScreen = outsideScreen;
+    public void setShouldRender(boolean shouldRender) {
+        this.shouldRender = shouldRender;
     }
 
     public abstract Color getColor();
