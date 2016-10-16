@@ -3,7 +3,7 @@ package com.wasd;
 import com.wasd.lib3d.Window3D;
 import com.wasd.lib3d.shapes.Box;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class Main {
 
@@ -11,7 +11,7 @@ public class Main {
         Window3D wasdWindow = new Window3D();
 
         addSomeBoxes(wasdWindow);
-        wasdWindow.addShape(new Box(0, .5f, 1f, .2f).withColor(Color.PINK));
+        wasdWindow.addShape(new Box(-.1f, .3f, .5f, .2f).withColor(Color.PINK));
 
         wasdWindow.letsGetStarted();
     }
@@ -19,7 +19,7 @@ public class Main {
     private static void addSomeBoxes(Window3D wasdWindow) {
         for (int i = 0; i < 5; i++) {
             Box box = new Box(i / 3f - 1f,
-                    0,
+                    -.3f,
                     1f,
                     .05f + i / 50f);
             wasdWindow.addShape(box.withColor(Color.getHSBColor(i / 10f, 1, 1)));

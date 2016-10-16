@@ -2,7 +2,7 @@ package com.wasd.lib3d.shapes.primitives.drawable;
 
 import java.awt.Color;
 
-public class DrawableDot implements Drawable {
+public class DrawableDot extends Drawable {
 
     private float x;
     private float y;

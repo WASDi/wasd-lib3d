@@ -1,9 +1,19 @@
 package com.wasd.lib3d.shapes.primitives.drawable;
 
-import java.awt.*;
+import java.awt.Color;
 
-public interface Drawable {
+public abstract class Drawable {
 
-    Color getColor();
+    private boolean outsideScreen;
+
+    public boolean isOutsideScreen() {
+        return outsideScreen;
+    }
+
+    public void setOutsideScreen(boolean outsideScreen) {
+        this.outsideScreen = outsideScreen;
+    }
+
+    public abstract Color getColor();
 
 }
