@@ -1,6 +1,7 @@
 package com.wasd.lib3d.shapes;
 
 import com.wasd.lib3d.shapes.primitives.Dot;
+import com.wasd.lib3d.shapes.primitives.Line;
 
 public class Sphere extends Shape {
 
@@ -18,8 +19,11 @@ public class Sphere extends Shape {
 
     private void initDots(float x, float y, float z, float size) {
         float halfSize = size / 2;
+
         Dot topDot = new Dot(x, y - halfSize, z);
+        Dot bottomDot = new Dot(x, y + halfSize, z);
         dots.add(topDot);
+        dots.add(bottomDot);
 
         for (int ring = 0; ring < RESOLUTION_Y; ring++) {
             float ringY = topDot.getY() + size * (ring + 1f) / (RESOLUTION_Y + 1);
@@ -32,13 +36,44 @@ public class Sphere extends Shape {
             }
         }
 
-        Dot bottomDot = new Dot(x, y + halfSize, z);
-        dots.add(bottomDot);
 
         dots.forEach(dot -> dotsAsDrawable.add(dot.getDrawable()));
     }
 
     private void initLinesBetweenDots() {
+        initLinesToTopAndBottom();
+        initLinesBetweenRings();
+        initLinesWithinRings();
+
         lines.forEach(dot -> linesAsDrawable.add(dot.getDrawable()));
+    }
+
+    private void initLinesToTopAndBottom() {
+        Dot topDot = dots.get(0);
+        Dot bottomDot = dots.get(1);
+        for (int i = 0; i < RESOLUTION_X; i++) {
+            lines.add(new Line(topDot, dots.get(2 + i)));
+            lines.add(new Line(bottomDot, dots.get(RESOLUTION_X * RESOLUTION_Y + i - RESOLUTION_X + 2)));
+        }
+    }
+
+    private void initLinesBetweenRings() {
+        for (int ring = 0; ring < RESOLUTION_Y - 1; ring++) {
+            int ringIndex = 2 + ring * RESOLUTION_X;
+            for (int pointIndex = 0; pointIndex < RESOLUTION_X; pointIndex++) {
+                lines.add(new Line(dots.get(ringIndex + pointIndex),
+                        dots.get(ringIndex + pointIndex + RESOLUTION_X)));
+            }
+        }
+    }
+
+    private void initLinesWithinRings() {
+        for (int ring = 0; ring < RESOLUTION_Y; ring++) {
+            int ringIndex = 2 + ring * RESOLUTION_X;
+            for (int pointIndex = 0; pointIndex < RESOLUTION_X; pointIndex++) {
+                lines.add(new Line(dots.get(ringIndex + pointIndex),
+                        dots.get(ringIndex + (pointIndex + 1) % RESOLUTION_X)));
+            }
+        }
     }
 }
