@@ -42,4 +42,9 @@ public abstract class Shape {
         dotsAsDrawable.forEach(drawableDot -> drawableDot.updateColor(color));
         return this;
     }
+
+    public Shape withLineColor(Color color) {
+        linesAsDrawable.forEach(drawableLine -> drawableLine.updateColor(color));
+        return this;
+    }
 }

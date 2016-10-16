@@ -12,8 +12,8 @@ public class Main {
         Window3D wasdWindow = new Window3D();
 
         addSomeBoxes(wasdWindow);
-        wasdWindow.addShape(new Box(-.1f, .15f, .5f, .2f).withDotColor(Color.PINK));
-        wasdWindow.addShape(new Sphere(-.1f, .15f, .5f, .2f).withDotColor(Color.MAGENTA));
+        wasdWindow.addShape(new Box(-.1f, .15f, .8f, .3f).withDotColor(Color.PINK));
+        wasdWindow.addShape(new Sphere(-.1f, .15f, .8f, .3f).withDotColor(Color.MAGENTA));
 
         wasdWindow.letsGetStarted();
     }
@@ -25,7 +25,8 @@ public class Main {
                     -.3f + i / 50f,
                     1f,
                     .1f);
-            wasdWindow.addShape(box.withDotColor(Color.getHSBColor((float) i / numBoxes, 1, 1)));
+            wasdWindow.addShape(box.withLineColor(Color.getHSBColor((float) i / numBoxes, 1, 1)));
+            wasdWindow.addShape(box.withDotColor(Color.getHSBColor((float) i / numBoxes, .5f, .5f)));
         }
     }
 }

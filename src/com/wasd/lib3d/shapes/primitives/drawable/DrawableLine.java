@@ -8,6 +8,7 @@ public class DrawableLine extends Drawable {
     private float y1;
     private float x2;
     private float y2;
+    private Color color = Color.WHITE;
 
     public void updateX1(float x1) {
         this.x1 = x1;
@@ -23,6 +24,10 @@ public class DrawableLine extends Drawable {
 
     public void updateY2(float y2) {
         this.y2 = y2;
+    }
+
+    public void updateColor(Color color) {
+        this.color = color;
     }
 
     public float getX1() {
@@ -43,6 +48,6 @@ public class DrawableLine extends Drawable {
 
     @Override
     public Color getColor() {
-        return Color.CYAN;
+        return color;
     }
 }

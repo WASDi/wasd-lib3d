@@ -5,7 +5,7 @@ import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 
 public class Dot implements PrimitiveShape<DrawableDot> {
 
-    private static final float DOT_SIZE_FACTOR = 10f;
+    private static final float DOT_SIZE_FACTOR = 7f;
 
     private float x;
     private float y;
