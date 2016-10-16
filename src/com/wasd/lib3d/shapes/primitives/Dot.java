@@ -41,8 +41,8 @@ public class Dot implements PrimitiveShape<DrawableDot> {
 
         float factor = 1 / (z - camera.getPosZ());
 
-        drawable.updateX(factor * (camera.getPosX() + x));
-        drawable.updateY(factor * (camera.getPosY() + y));
+        drawable.updateX(factor * (x - camera.getPosX()));
+        drawable.updateY(factor * (y - camera.getPosY()));
         drawable.updateSize(DOT_SIZE_FACTOR * factor);
 
         drawable.updateZDistanceFromCamera(z - camera.getPosZ());

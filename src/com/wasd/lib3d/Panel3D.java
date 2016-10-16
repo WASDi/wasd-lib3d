@@ -120,8 +120,8 @@ public class Panel3D extends JPanel {
     }
 
     public void onMouseDrag(int dx, int dy) {
-        camera.relativeXYMovement(dx / RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR,
-                dy / RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR);
+        camera.relativeXYMovement(-dx / RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR,
+                -dy / RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR);
         repaint();
     }
 

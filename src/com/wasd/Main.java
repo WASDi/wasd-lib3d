@@ -11,8 +11,9 @@ public class Main {
     public static void main(String[] args) {
         Window3D wasdWindow = new Window3D();
 
-        //addSomeBoxes(wasdWindow);
+        addSomeBoxes(wasdWindow);
         wasdWindow.addShape(new Sphere(-.15f, .15f, .8f, .5f).withDotColor(Color.GREEN).withLineColor(Color.BLUE));
+        wasdWindow.addShape(new Sphere(1, .15f, .8f, .3f).withDotColor(Color.GREEN).withLineColor(Color.YELLOW));
 
         wasdWindow.letsGetStarted();
     }
