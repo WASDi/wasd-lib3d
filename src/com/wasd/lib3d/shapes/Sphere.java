@@ -5,14 +5,15 @@ import com.wasd.lib3d.shapes.primitives.Line;
 
 public class Sphere extends Shape {
 
-    private static final int RESOLUTION_X = 10;
-    private static final int RESOLUTION_Y = 8;
+    private static final int RESOLUTION_X = 20;
+    private static final int RESOLUTION_Y = 18;
 
     private static final float PI = (float) Math.PI;
     private static final float TWO_PI = (float) Math.PI * 2f;
 
     public Sphere(float x, float y, float z, float size) {
-        super(2 + RESOLUTION_X * RESOLUTION_Y, 1000);
+        super(2 + RESOLUTION_X * RESOLUTION_Y,
+                RESOLUTION_X * RESOLUTION_Y + RESOLUTION_X * (RESOLUTION_Y + 1));
         initDots(x, y, z, size);
         initLinesBetweenDots();
     }
