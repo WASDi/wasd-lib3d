@@ -79,13 +79,16 @@ public class Panel3D extends JPanel {
                 if (drawableDot.shouldRender()) {
                     continue;
                 }
+                int dotDrawSize = Math.round(drawableDot.getSize());
+                if (dotDrawSize <= 1) {
+                    continue;
+                }
                 Color c = colorBasedOnDistance(drawableDot);
                 if (c == null) {
                     continue;
                 }
                 float pixelX = centerX + drawableDot.getX() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
                 float pixelY = centerY + drawableDot.getY() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-                int dotDrawSize = Math.round(drawableDot.getSize());
 
                 g.setColor(c);
                 g.fillOval(Math.round(pixelX - dotDrawSize / 2f), Math.round(pixelY - dotDrawSize / 2f),
@@ -103,7 +106,7 @@ public class Panel3D extends JPanel {
         Color oldColor = drawableLine.getColor();
 
         float distanceForMaxColor = .5f;
-        float distanceForLeastColor = 2f;
+        float distanceForLeastColor = 5f;
 
         if (distance < distanceForMaxColor) {
             return oldColor;
