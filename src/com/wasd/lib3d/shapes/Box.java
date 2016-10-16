@@ -7,18 +7,11 @@ import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 
 import java.awt.*;
-import java.util.ArrayList;
 
-public class Box implements Shape {
-
-    private final ArrayList<Dot> dots = new ArrayList<>(8);
-    private final ArrayList<DrawableDot> dotsAsDrawable = new ArrayList<>(8);
-
-    private final ArrayList<Line> lines = new ArrayList<>(12);
-    private final ArrayList<DrawableLine> linesAsDrawable = new ArrayList<>(12);
-
+public class Box extends Shape {
 
     public Box(float x, float y, float z, float size) {
+        super(8, 12);
         initDots(x, y, z, size);
         initLinesBetweenDots();
     }
@@ -58,8 +51,8 @@ public class Box implements Shape {
 
     @Override
     public void calculateDotsAndLinesToDraw(Camera camera) {
-        dots.forEach(dot -> dot.calculateDotsAndLinesToDraw(camera));
-        lines.forEach(line -> line.calculateDotsAndLinesToDraw(camera));
+        dots.forEach(dot -> dot.update(camera));
+        lines.forEach(line -> line.update(camera));
     }
 
     @Override

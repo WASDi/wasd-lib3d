@@ -11,22 +11,18 @@ public class Main {
         Window3D wasdWindow = new Window3D();
 
         addSomeBoxes(wasdWindow);
+        wasdWindow.addShape(new Box(0, .5f, 1f, .2f).withColor(Color.PINK));
 
         wasdWindow.letsGetStarted();
     }
 
     private static void addSomeBoxes(Window3D wasdWindow) {
-        Color[][] boxColors = {{Color.RED, Color.GREEN}, {Color.BLUE, Color.YELLOW}};
-
-        for (int x = 0; x < 2; x++) {
-            for (int y = 0; y < 2; y++) {
-                wasdWindow.addShape(
-                        new Box(x / 4f - .125f,
-                                y / 4f - .125f,
-                                .7f,
-                                .1f).withColor(boxColors[x][y])
-                );
-            }
+        for (int i = 0; i < 5; i++) {
+            Box box = new Box(i / 3f - 1f,
+                    0,
+                    1f,
+                    .05f + i / 50f);
+            wasdWindow.addShape(box.withColor(Color.getHSBColor(i / 10f, 1, 1)));
         }
     }
 }

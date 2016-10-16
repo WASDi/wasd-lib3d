@@ -32,7 +32,7 @@ public class Panel3D extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.setColor(BACKGROUND_LIGHT_GRAY);
+        g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
 
         calculate();

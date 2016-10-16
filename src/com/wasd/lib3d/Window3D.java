@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Window3D extends JFrame {
 
-    public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
+    public static final Dimension DEFAULT_SIZE = new Dimension(1280, 720);
 
     private final Panel3D panel3D;
     private final MouseForUpdatingCamera mouseForUpdatingCamera;
