@@ -5,6 +5,7 @@ import java.awt.Color;
 public abstract class Drawable {
 
     private boolean shouldRender;
+    private float zDistanceFromCamera;
 
     public boolean shouldRender() {
         return shouldRender;
@@ -12,6 +13,14 @@ public abstract class Drawable {
 
     public void setShouldRender(boolean shouldRender) {
         this.shouldRender = shouldRender;
+    }
+
+    public void updateZDistanceFromCamera(float distance) {
+        this.zDistanceFromCamera = distance;
+    }
+
+    public float getZDistanceFromCamera() {
+        return zDistanceFromCamera;
     }
 
     public abstract Color getColor();
