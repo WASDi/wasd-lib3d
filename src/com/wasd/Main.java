@@ -2,6 +2,7 @@ package com.wasd;
 
 import com.wasd.lib3d.Window3D;
 import com.wasd.lib3d.shapes.Box;
+import com.wasd.lib3d.shapes.Sphere;
 
 import java.awt.Color;
 
@@ -11,18 +12,20 @@ public class Main {
         Window3D wasdWindow = new Window3D();
 
         addSomeBoxes(wasdWindow);
-        wasdWindow.addShape(new Box(-.1f, .3f, .5f, .2f).withColor(Color.PINK));
+        wasdWindow.addShape(new Box(-.1f, .15f, .5f, .2f).withDotColor(Color.PINK));
+        wasdWindow.addShape(new Sphere(-.1f, .15f, .5f, .2f).withDotColor(Color.MAGENTA));
 
         wasdWindow.letsGetStarted();
     }
 
     private static void addSomeBoxes(Window3D wasdWindow) {
-        for (int i = 0; i < 5; i++) {
-            Box box = new Box(i / 3f - 1f,
-                    -.3f,
+        int numBoxes = 15;
+        for (int i = 0; i < numBoxes; i++) {
+            Box box = new Box(i / 7f - 1f,
+                    -.3f + i / 50f,
                     1f,
-                    .05f + i / 50f);
-            wasdWindow.addShape(box.withColor(Color.getHSBColor(i / 10f, 1, 1)));
+                    .1f);
+            wasdWindow.addShape(box.withDotColor(Color.getHSBColor((float) i / numBoxes, 1, 1)));
         }
     }
 }

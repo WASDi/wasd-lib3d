@@ -6,6 +6,7 @@ import com.wasd.lib3d.shapes.primitives.Line;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public abstract class Shape {
@@ -24,7 +25,10 @@ public abstract class Shape {
         linesAsDrawable = new ArrayList<>(numLines);
     }
 
-    public abstract void updateDrawables(Camera camera);
+    public void updateDrawables(Camera camera) {
+        dots.forEach(dot -> dot.updateDrawable(camera));
+        lines.forEach(line -> line.updateDrawable(camera));
+    }
 
     public Iterable<DrawableDot> getDrawableDotsAfterCalculation() {
         return dotsAsDrawable;
@@ -32,5 +36,10 @@ public abstract class Shape {
 
     public Iterable<DrawableLine> getDrawableLinesAfterCalculation() {
         return linesAsDrawable;
+    }
+
+    public Shape withDotColor(Color color) {
+        dotsAsDrawable.forEach(drawableDot -> drawableDot.updateColor(color));
+        return this;
     }
 }
