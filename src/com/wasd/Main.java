@@ -12,15 +12,18 @@ import java.util.function.BiFunction;
 public class Main {
 
     public static void main(String[] args) {
+        //MAYBE TODO : port to OpenCL ! Calculations are easy, but what about rendering?
         Window3D wasdWindow = new Window3D();
 
         BiFunction<Float, Float, Float> plotFunction = Functions.gaussian;
 
-        //addSomeBoxes(wasdWindow);
-        //wasdWindow.addShape(new Sphere(-.15f, .15f, .8f, .5f).withDotColor(Color.GREEN).withLineColor(Color.BLUE));
-        //wasdWindow.addShape(new Sphere(1, .15f, .8f, .3f).withDotColor(Color.GREEN).withLineColor(Color.YELLOW));
+        addSomeBoxes(wasdWindow);
+        wasdWindow.addShape(new Sphere(-.15f, .15f, .8f, .5f).withDotColor(Color.GREEN).withLineColor(Color.BLUE));
         wasdWindow.addShape(new Plot(.5f, .3f, .8f, .5f, plotFunction).withDotColor(Color.GREEN).withLineColor(Color.YELLOW));
         wasdWindow.addShape(new Sphere(.5f, -.3f, .8f, .3f).withDotColor(Color.BLUE).withLineColor(Color.PINK));
+
+        wasdWindow.addShape(new Box(0, -1f, 1f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
+        wasdWindow.addShape(new Box(0, -1f, 2f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
 
         wasdWindow.letsGetStarted();
     }
