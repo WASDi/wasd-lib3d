@@ -11,4 +11,12 @@ public class Float3 {
         this.y = y;
         this.z = z;
     }
+
+    public float distanceFrom(Float3 other) {
+        float dx = other.x - x;
+        float dy = other.y - y;
+        float dz = other.z - z;
+        return (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
+    }
+
 }

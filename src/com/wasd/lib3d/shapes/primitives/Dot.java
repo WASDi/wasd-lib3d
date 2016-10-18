@@ -12,7 +12,7 @@ public class Dot implements PrimitiveShape<DrawableDot> {
 
     private final Float3 pos;
 
-    private DrawableDot drawable = new DrawableDot();
+    private final DrawableDot drawable = new DrawableDot();
 
     public Dot(float x, float y, float z) {
         pos = new Float3(x, y, z);
@@ -24,7 +24,7 @@ public class Dot implements PrimitiveShape<DrawableDot> {
 
     @Override
     public void updateDrawable(Camera camera) {
-        Float2 locationOnScreen = Settings.PROJECTION.projectTo2D(camera, pos);
+        Float2 locationOnScreen = Settings.PROJECTION.locationOnScreen(camera, pos);
 
         drawable.setLocationOnScreen(locationOnScreen);
         if (!drawable.shouldRender()) {

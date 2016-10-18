@@ -7,7 +7,7 @@ public enum Projection {
 
     ORTHOGRAPHIC {
         @Override
-        public Float2 projectTo2D(Camera camera, Float3 pos) {
+        public Float2 locationOnScreen(Camera camera, Float3 pos) {
             return new Float2((pos.x - camera.getPosX()),
                     (pos.y - camera.getPosY()));
         }
@@ -16,7 +16,7 @@ public enum Projection {
         public static final float MIN_DISTANCE_FROM_CAMERA = .01f;
 
         @Override
-        public Float2 projectTo2D(Camera camera, Float3 pos) {
+        public Float2 locationOnScreen(Camera camera, Float3 pos) {
             if (pos.z < (camera.getPosZ() + MIN_DISTANCE_FROM_CAMERA)) {
                 return null;
             }
@@ -32,6 +32,6 @@ public enum Projection {
     /**
      * @return null iff not to render
      */
-    public abstract Float2 projectTo2D(Camera camera, Float3 pos);
+    public abstract Float2 locationOnScreen(Camera camera, Float3 pos);
 
 }
