@@ -1,9 +1,9 @@
 package com.wasd.lib3d.gui;
 
-import com.sun.istack.internal.Nullable;
 import com.wasd.lib3d.Camera;
+import com.wasd.lib3d.Renderer;
+import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.shapes.Shape;
-import com.wasd.lib3d.shapes.primitives.drawable.Drawable;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 
@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Panel3D extends JPanel {
-
-    public static final float RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR = 500;
 
     private List<Shape> shapes = new ArrayList<>();
     private final Camera camera;
@@ -32,14 +30,16 @@ public class Panel3D extends JPanel {
     }
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, getWidth(), getHeight());
+    public void paint(Graphics graphics) {
+        super.paint(graphics);
+        graphics.setColor(Color.BLACK);
+        graphics.fillRect(0, 0, getWidth(), getHeight());
 
         updateDrawables();
-        drawAllLines(g);
-        drawAllDots(g);
+
+        Renderer renderer = new Renderer(graphics, getWidth(), getHeight());
+        drawAllLines(renderer);
+        drawAllDots(renderer);
     }
 
     private void updateDrawables() {
@@ -48,85 +48,29 @@ public class Panel3D extends JPanel {
         }
     }
 
-    private void drawAllLines(Graphics g) {
-        int centerX = getWidth() / 2;
-        int centerY = getHeight() / 2;
+    private void drawAllLines(Renderer renderer) {
         for (Shape shape : shapes) {
             for (DrawableLine drawableLine : shape.getDrawableLinesAfterCalculation()) {
-                if (!drawableLine.shouldRender()) {
-                    continue;
+                if (drawableLine.shouldRender()) {
+                    renderer.renderLine(drawableLine);
                 }
-                Color c = colorBasedOnDistance(drawableLine);
-                if (c == null) {
-                    continue;
-                }
-                float pixelX1 = centerX + drawableLine.getStartLocationOnScreen().x * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-                float pixelY1 = centerY + drawableLine.getStartLocationOnScreen().y * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-                float pixelX2 = centerX + drawableLine.getEndLocationOnScreen().x * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-                float pixelY2 = centerY + drawableLine.getEndLocationOnScreen().y * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-
-                g.setColor(c);
-                g.drawLine(Math.round(pixelX1), Math.round(pixelY1),
-                        Math.round(pixelX2), Math.round(pixelY2));
             }
         }
     }
 
-    private void drawAllDots(Graphics g) {
-        int centerX = getWidth() / 2;
-        int centerY = getHeight() / 2;
+    private void drawAllDots(Renderer renderer) {
         for (Shape shape : shapes) {
             for (DrawableDot drawableDot : shape.getDrawableDotsAfterCalculation()) {
-                if (!drawableDot.shouldRender()) {
-                    continue;
+                if (drawableDot.shouldRender()) {
+                    renderer.renderDot(drawableDot);
                 }
-                int dotDrawSize = Math.round(drawableDot.getSize());
-                if (dotDrawSize <= 1) {
-                    continue;
-                }
-                Color c = colorBasedOnDistance(drawableDot);
-                if (c == null) {
-                    continue;
-                }
-                float pixelX = centerX + drawableDot.getLocationOnScreen().x * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-                float pixelY = centerY + drawableDot.getLocationOnScreen().y * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-
-                g.setColor(c);
-                g.fillOval(Math.round(pixelX - dotDrawSize / 2f), Math.round(pixelY - dotDrawSize / 2f),
-                        dotDrawSize, dotDrawSize);
             }
         }
-    }
-
-    /**
-     * @return null if too far away and should not be drawn.
-     */
-    @Nullable
-    private Color colorBasedOnDistance(Drawable drawableLine) {
-        //TODO doesn't fit in this class,
-        float distance = drawableLine.getZDistanceFromCamera();
-        Color oldColor = drawableLine.getColor();
-
-        float distanceForMaxColor = .5f;
-        float distanceForLeastColor = 4f;
-
-        if (distance < distanceForMaxColor) {
-            return oldColor;
-        } else if (distance > distanceForLeastColor) {
-            return null;
-        }
-        float fogFactor = 1 - (distance - distanceForMaxColor) / (distanceForLeastColor - distanceForMaxColor);
-        float red = oldColor.getRed() * fogFactor;
-        float green = oldColor.getGreen() * fogFactor;
-        float blue = oldColor.getBlue() * fogFactor;
-        return new Color((int) red,
-                (int) green,
-                (int) blue);
     }
 
     public void onMouseDrag(int dx, int dy) {
-        camera.relativeXYMovement(-dx / RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR,
-                -dy / RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR);
+        camera.relativeXYMovement(-dx / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR,
+                -dy / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR);
         repaint();
     }
 
