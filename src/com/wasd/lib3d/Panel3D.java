@@ -102,11 +102,12 @@ public class Panel3D extends JPanel {
      */
     @Nullable
     private Color colorBasedOnDistance(Drawable drawableLine) {
+        //TODO doesn't fit in this class,
         float distance = drawableLine.getZDistanceFromCamera();
         Color oldColor = drawableLine.getColor();
 
         float distanceForMaxColor = .5f;
-        float distanceForLeastColor = 5f;
+        float distanceForLeastColor = 4f;
 
         if (distance < distanceForMaxColor) {
             return oldColor;
