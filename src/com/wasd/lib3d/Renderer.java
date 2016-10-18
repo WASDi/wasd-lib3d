@@ -4,6 +4,7 @@ import com.sun.istack.internal.Nullable;
 import com.wasd.lib3d.shapes.primitives.drawable.Drawable;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
+import com.wasd.lib3d.shapes.primitives.drawable.DrawableText;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -51,6 +52,10 @@ public class Renderer {
         graphics.setColor(c);
         graphics.fillOval(Math.round(pixelX - dotDrawSize / 2f), Math.round(pixelY - dotDrawSize / 2f),
                 dotDrawSize, dotDrawSize);
+    }
+
+    public void renderText(DrawableText drawableText) {
+        //TODO... same as above but drawString instead of fillOval = don't duplicate code !!!
     }
 
     /**
