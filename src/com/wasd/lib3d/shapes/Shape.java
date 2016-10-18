@@ -39,12 +39,12 @@ public abstract class Shape {
     }
 
     public Shape withDotColor(Color color) {
-        dotsAsDrawable.forEach(drawableDot -> drawableDot.updateColor(color));
+        dotsAsDrawable.forEach(drawableDot -> drawableDot.setColor(color));
         return this;
     }
 
     public Shape withLineColor(Color color) {
-        linesAsDrawable.forEach(drawableLine -> drawableLine.updateColor(color));
+        linesAsDrawable.forEach(drawableLine -> drawableLine.setColor(color));
         return this;
     }
 }

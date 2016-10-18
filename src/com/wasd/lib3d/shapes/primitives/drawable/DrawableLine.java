@@ -1,53 +1,42 @@
 package com.wasd.lib3d.shapes.primitives.drawable;
 
+import com.wasd.lib3d.model.Float2;
+
 import java.awt.Color;
 
 public class DrawableLine extends Drawable {
 
-    private float x1;
-    private float y1;
-    private float x2;
-    private float y2;
+    private Float2 startLocationOnScreen;
+    private Float2 endLocationOnScreen;
     private Color color = Color.WHITE;
 
-    public void updateX1(float x1) {
-        this.x1 = x1;
+    public Float2 getStartLocationOnScreen() {
+        return startLocationOnScreen;
     }
 
-    public void updateY1(float y1) {
-        this.y1 = y1;
+    public void setStartLocationOnScreen(Float2 startLocationOnScreen) {
+        this.startLocationOnScreen = startLocationOnScreen;
     }
 
-    public void updateX2(float x2) {
-        this.x2 = x2;
+    public Float2 getEndLocationOnScreen() {
+        return endLocationOnScreen;
     }
 
-    public void updateY2(float y2) {
-        this.y2 = y2;
+    public void setEndLocationOnScreen(Float2 endLocationOnScreen) {
+        this.endLocationOnScreen = endLocationOnScreen;
     }
 
-    public void updateColor(Color color) {
+    public void setColor(Color color) {
         this.color = color;
-    }
-
-    public float getX1() {
-        return x1;
-    }
-
-    public float getY1() {
-        return y1;
-    }
-
-    public float getX2() {
-        return x2;
-    }
-
-    public float getY2() {
-        return y2;
     }
 
     @Override
     public Color getColor() {
         return color;
+    }
+
+    @Override
+    public boolean shouldRender() {
+        return startLocationOnScreen != null && endLocationOnScreen != null;
     }
 }

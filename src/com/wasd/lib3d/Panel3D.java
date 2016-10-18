@@ -52,17 +52,17 @@ public class Panel3D extends JPanel {
         int centerY = getHeight() / 2;
         for (Shape shape : shapes) {
             for (DrawableLine drawableLine : shape.getDrawableLinesAfterCalculation()) {
-                if (drawableLine.shouldRender()) {
+                if (!drawableLine.shouldRender()) {
                     continue;
                 }
                 Color c = colorBasedOnDistance(drawableLine);
                 if (c == null) {
                     continue;
                 }
-                float pixelX1 = centerX + drawableLine.getX1() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-                float pixelY1 = centerY + drawableLine.getY1() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-                float pixelX2 = centerX + drawableLine.getX2() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-                float pixelY2 = centerY + drawableLine.getY2() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                float pixelX1 = centerX + drawableLine.getStartLocationOnScreen().x * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                float pixelY1 = centerY + drawableLine.getStartLocationOnScreen().y * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                float pixelX2 = centerX + drawableLine.getEndLocationOnScreen().x * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                float pixelY2 = centerY + drawableLine.getEndLocationOnScreen().y * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
 
                 g.setColor(c);
                 g.drawLine(Math.round(pixelX1), Math.round(pixelY1),
@@ -76,7 +76,7 @@ public class Panel3D extends JPanel {
         int centerY = getHeight() / 2;
         for (Shape shape : shapes) {
             for (DrawableDot drawableDot : shape.getDrawableDotsAfterCalculation()) {
-                if (drawableDot.shouldRender()) {
+                if (!drawableDot.shouldRender()) {
                     continue;
                 }
                 int dotDrawSize = Math.round(drawableDot.getSize());
@@ -87,8 +87,8 @@ public class Panel3D extends JPanel {
                 if (c == null) {
                     continue;
                 }
-                float pixelX = centerX + drawableDot.getX() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-                float pixelY = centerY + drawableDot.getY() * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                float pixelX = centerX + drawableDot.getLocationOnScreen().x * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+                float pixelY = centerY + drawableDot.getLocationOnScreen().y * RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
 
                 g.setColor(c);
                 g.fillOval(Math.round(pixelX - dotDrawSize / 2f), Math.round(pixelY - dotDrawSize / 2f),

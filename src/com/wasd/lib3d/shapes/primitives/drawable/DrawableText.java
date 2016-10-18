@@ -10,4 +10,9 @@ public class DrawableText extends Drawable {
     public Color getColor() {
         return Color.WHITE;
     }
+
+    @Override
+    public boolean shouldRender() {
+        return false;
+    }
 }

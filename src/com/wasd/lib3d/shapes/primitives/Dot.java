@@ -25,18 +25,14 @@ public class Dot implements PrimitiveShape<DrawableDot> {
     @Override
     public void updateDrawable(Camera camera) {
         Float2 locationOnScreen = Settings.PROJECTION.projectTo2D(camera, pos);
-        if (locationOnScreen == null) {
-            drawable.setShouldRender(true);
+
+        drawable.setLocationOnScreen(locationOnScreen);
+        if (!drawable.shouldRender()) {
             return;
         }
-        drawable.setShouldRender(false);
 
-        drawable.updateX(locationOnScreen.x);
-        drawable.updateY(locationOnScreen.y);
-
-        drawable.updateSize(DOT_SIZE_FACTOR / distanceFrom(camera));
-
-        drawable.updateZDistanceFromCamera(pos.z - camera.getPosZ());
+        drawable.setSize(DOT_SIZE_FACTOR / distanceFrom(camera));
+        drawable.setZDistanceFromCamera(pos.z - camera.getPosZ());
     }
 
     @Override
