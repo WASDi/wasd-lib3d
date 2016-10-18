@@ -1,5 +1,7 @@
 package com.wasd.lib3d;
 
+import com.wasd.lib3d.gui.Panel3D;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;

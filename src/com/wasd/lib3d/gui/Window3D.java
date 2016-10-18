@@ -1,9 +1,11 @@
-package com.wasd.lib3d;
+package com.wasd.lib3d.gui;
 
+import com.wasd.lib3d.MouseForUpdatingCamera;
 import com.wasd.lib3d.shapes.Shape;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import java.awt.Dimension;
+import java.awt.HeadlessException;
 
 public class Window3D extends JFrame {
 

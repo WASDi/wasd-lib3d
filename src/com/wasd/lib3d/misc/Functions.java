@@ -1,4 +1,4 @@
-package com.wasd.lib3d;
+package com.wasd.lib3d.misc;
 
 import java.util.function.BiFunction;
 

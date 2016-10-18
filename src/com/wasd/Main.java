@@ -1,7 +1,7 @@
 package com.wasd;
 
-import com.wasd.lib3d.Functions;
-import com.wasd.lib3d.Window3D;
+import com.wasd.lib3d.gui.Window3D;
+import com.wasd.lib3d.misc.Functions;
 import com.wasd.lib3d.shapes.Box;
 import com.wasd.lib3d.shapes.Plot;
 import com.wasd.lib3d.shapes.Sphere;
@@ -21,9 +21,10 @@ public class Main {
         wasdWindow.addShape(new Sphere(-.15f, .15f, .8f, .5f).withDotColor(Color.GREEN).withLineColor(Color.BLUE));
         wasdWindow.addShape(new Plot(.5f, .3f, .8f, .5f, plotFunction).withDotColor(Color.GREEN).withLineColor(Color.YELLOW));
         wasdWindow.addShape(new Sphere(.5f, -.3f, .8f, .3f).withDotColor(Color.BLUE).withLineColor(Color.PINK));
-        
+
         wasdWindow.addShape(new Box(-.2f, -1f, .5f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
         wasdWindow.addShape(new Box(.2f, -1f, .5f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
+//        wasdWindow.addShape(new Text(0f, -1f, .5f, "Shit"));
 
         wasdWindow.addShape(new Box(0, -1f, 1f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
 

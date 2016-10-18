@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public abstract class Shape {
 
+    //This is SHIT !!! Need a smarter way. Will look too ugly after adding Text too
     protected final ArrayList<Dot> dots;
     protected final ArrayList<DrawableDot> dotsAsDrawable;
 

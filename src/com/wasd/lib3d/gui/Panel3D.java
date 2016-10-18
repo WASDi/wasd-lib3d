@@ -1,6 +1,7 @@
-package com.wasd.lib3d;
+package com.wasd.lib3d.gui;
 
 import com.sun.istack.internal.Nullable;
+import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.shapes.Shape;
 import com.wasd.lib3d.shapes.primitives.drawable.Drawable;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
