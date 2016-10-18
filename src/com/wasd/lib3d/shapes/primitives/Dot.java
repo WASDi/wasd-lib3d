@@ -31,8 +31,8 @@ public class Dot implements PrimitiveShape<DrawableDot> {
             return;
         }
 
-        drawable.setSize(DOT_SIZE_FACTOR / distanceFrom(camera));
-        drawable.setZDistanceFromCamera(pos.z - camera.getPosZ());
+        drawable.setSize(DOT_SIZE_FACTOR / camera.distanceFrom(pos));
+        drawable.setZDistanceFromCamera(pos.z - camera.getZ());
     }
 
     @Override
@@ -40,10 +40,4 @@ public class Dot implements PrimitiveShape<DrawableDot> {
         return drawable;
     }
 
-    public float distanceFrom(Camera camera) {
-        float dx = camera.getPosX() - pos.x;
-        float dy = camera.getPosY() - pos.y;
-        float dz = camera.getPosZ() - pos.z;
-        return (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
-    }
 }

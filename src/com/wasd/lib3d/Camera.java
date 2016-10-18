@@ -1,39 +1,48 @@
 package com.wasd.lib3d;
 
+import com.wasd.lib3d.model.Float3;
+
 public class Camera {
 
-    private float posX;
-    private float posY;
-    private float posZ;
+    private float x;
+    private float y;
+    private float z;
 
     public Camera() {
         this(0f, 0f);
     }
 
-    public Camera(float posX, float posY) {
-        this.posX = posX;
-        this.posY = posY;
+    public Camera(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 
     public void relativeXYMovement(float dx, float dy) {
-        posX += dx;
-        posY += dy;
+        x += dx;
+        y += dy;
     }
 
     public void relativeZMovement(float dz) {
-        posZ += dz;
+        z += dz;
     }
 
-    public float getPosX() {
-        return posX;
+    public float getX() {
+        return x;
     }
 
-    public float getPosY() {
-        return posY;
+    public float getY() {
+        return y;
     }
 
-    public float getPosZ() {
-        return posZ;
+    public float getZ() {
+        return z;
+    }
+
+    public float distanceFrom(Float3 point) {
+        float dx = point.x - x;
+        float dy = point.y - y;
+        float dz = point.z - z;
+        return (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
 }

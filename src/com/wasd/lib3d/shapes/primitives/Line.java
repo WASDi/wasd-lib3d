@@ -24,7 +24,7 @@ public class Line implements PrimitiveShape<DrawableLine> {
             return;
         }
 
-        drawable.setZDistanceFromCamera((fromDot.getPos().z + toDot.getPos().z) / 2f - camera.getPosZ());
+        drawable.setZDistanceFromCamera((fromDot.getPos().z + toDot.getPos().z) / 2f - camera.getZ());
     }
 
     @Override
