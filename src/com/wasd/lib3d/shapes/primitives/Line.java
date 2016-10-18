@@ -17,7 +17,7 @@ public class Line implements PrimitiveShape<DrawableLine> {
 
     @Override
     public void updateDrawable(Camera camera) {
-        float cameraPosZ = camera.getPosZ() + MIN_DISTANCE_FROM_CAMERA;
+        float cameraPosZ = camera.getPosZ() + .01f;
         if (fromDot.getPos().getZ() < cameraPosZ || toDot.getPos().getZ() < cameraPosZ) {
             drawable.setShouldRender(true);
             return;

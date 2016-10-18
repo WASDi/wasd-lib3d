@@ -1,6 +1,8 @@
 package com.wasd.lib3d.shapes.primitives;
 
 import com.wasd.lib3d.Camera;
+import com.wasd.lib3d.Settings;
+import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 
@@ -22,18 +24,17 @@ public class Dot implements PrimitiveShape<DrawableDot> {
 
     @Override
     public void updateDrawable(Camera camera) {
-        if (pos.getZ() < (camera.getPosZ() + MIN_DISTANCE_FROM_CAMERA)) {
+        Float2 locationOnScreen = Settings.PROJECTION.projectTo2D(camera, pos);
+        if (locationOnScreen == null) {
             drawable.setShouldRender(true);
             return;
         }
         drawable.setShouldRender(false);
 
-        float factor = 1 / (pos.getZ() - camera.getPosZ());
-//        float factor = 2 / (distanceFrom(camera));
+        drawable.updateX(locationOnScreen.getX());
+        drawable.updateY(locationOnScreen.getY());
 
-        drawable.updateX(factor * (pos.getX() - camera.getPosX()));
-        drawable.updateY(factor * (pos.getY() - camera.getPosY()));
-        drawable.updateSize(DOT_SIZE_FACTOR * factor);
+        drawable.updateSize(DOT_SIZE_FACTOR / distanceFrom(camera));
 
         drawable.updateZDistanceFromCamera(pos.getZ() - camera.getPosZ());
     }
