@@ -1,6 +1,7 @@
 package com.wasd.lib3d.shapes;
 
 import com.wasd.lib3d.Camera;
+import com.wasd.lib3d.future_features.World;
 import com.wasd.lib3d.shapes.primitives.Dot;
 import com.wasd.lib3d.shapes.primitives.Line;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
@@ -11,7 +12,10 @@ import java.util.ArrayList;
 
 public abstract class Shape {
 
-    //This is SHIT !!! Need a smarter way. Will look too ugly after adding Text too
+    /**
+     * This is SHIT !!! Need a smarter way. Will look too ugly after adding Text too.
+     * Start using #{@link World}
+     */
     protected final ArrayList<Dot> dots;
     protected final ArrayList<DrawableDot> dotsAsDrawable;
 

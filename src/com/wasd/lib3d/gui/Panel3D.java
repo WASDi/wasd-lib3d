@@ -1,8 +1,8 @@
 package com.wasd.lib3d.gui;
 
 import com.wasd.lib3d.Camera;
-import com.wasd.lib3d.Renderer;
 import com.wasd.lib3d.Settings;
+import com.wasd.lib3d.rendering.Renderer;
 import com.wasd.lib3d.shapes.Shape;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;

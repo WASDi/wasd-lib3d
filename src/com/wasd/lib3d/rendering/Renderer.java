@@ -1,6 +1,7 @@
-package com.wasd.lib3d;
+package com.wasd.lib3d.rendering;
 
 import com.sun.istack.internal.Nullable;
+import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.shapes.primitives.drawable.Drawable;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
@@ -56,15 +57,16 @@ public class Renderer {
 
     public void renderText(DrawableText drawableText) {
         //TODO... same as above but drawString instead of fillOval = don't duplicate code !!!
+        //http://stackoverflow.com/questions/27706197/how-can-i-center-graphics-drawstring-in-java
     }
 
     /**
      * @return null if too far away and should not be drawn.
      */
     @Nullable
-    private static Color colorBasedOnDistance(Drawable drawableLine) {
-        float distance = drawableLine.getZDistanceFromCamera();
-        Color oldColor = drawableLine.getColor();
+    private static Color colorBasedOnDistance(Drawable drawable) {
+        float distance = drawable.getZDistanceFromCamera();
+        Color oldColor = drawable.getColor();
 
         float distanceForMaxColor = .5f;
         float distanceForLeastColor = 4f;
