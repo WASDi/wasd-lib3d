@@ -80,18 +80,33 @@ public class Renderer {
         float zDistance = drawable.getZDistanceFromCamera();
         Color oldColor = drawable.getColor();
 
-        if (zDistance < Settings.DISTANCE_OR_CLOSER_FOR_BRIGHTEST_COLOR) {
+        float fogFactor = fogFactor(zDistance);
+
+        if (fogFactor <= 0f) {
             return oldColor;
-        } else if (zDistance > Settings.MAX_DISTANCE_TO_RENDER) {
+        } else if (fogFactor >= 1f) {
             return null;
         }
-        float fogFactor = 1 - (zDistance - Settings.DISTANCE_OR_CLOSER_FOR_BRIGHTEST_COLOR) / (Settings.MAX_DISTANCE_TO_RENDER - Settings.DISTANCE_OR_CLOSER_FOR_BRIGHTEST_COLOR);
-        float red = oldColor.getRed() * fogFactor;
-        float green = oldColor.getGreen() * fogFactor;
-        float blue = oldColor.getBlue() * fogFactor;
-        return new Color((int) red,
+
+        float red = oldColor.getRed() + fogFactor * (Settings.BACKGROUND_COLOR.getRed() - oldColor.getRed());
+        float green = oldColor.getGreen() + fogFactor * (Settings.BACKGROUND_COLOR.getGreen() - oldColor.getGreen());
+        float blue = oldColor.getBlue() + fogFactor * (Settings.BACKGROUND_COLOR.getBlue() - oldColor.getBlue());
+
+        return new Color(
+                (int) red,
                 (int) green,
-                (int) blue);
+                (int) blue
+        );
+    }
+
+    private static float fogFactor(float zDistance) {
+        if (zDistance < Settings.FOG_START_DISTANCE) {
+            return 0f;
+        } else if (zDistance > Settings.MAX_DISTANCE_TO_RENDER) {
+            return 1f;
+        }
+        return (zDistance - Settings.FOG_START_DISTANCE) /
+                (Settings.MAX_DISTANCE_TO_RENDER - Settings.FOG_START_DISTANCE);
     }
 
     private Float2 relativeToAbsolutePixels(Float2 relativeLocation) {

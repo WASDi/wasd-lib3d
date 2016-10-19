@@ -13,7 +13,7 @@ import java.awt.Color;
 public class Main {
 
     public static void main(String[] args) {
-        //MAYBE TODO : port to OpenCL ! Calculations are easy, but what about rendering?
+        //MAYBE TODO : port to OpenCL ! Calculations are easy, but what about rendering? One thread per drawable?
 
         World world = new World();
 
@@ -36,7 +36,7 @@ public class Main {
 
         Window3D wasdWindow = new Window3D(world);
 
-        wasdWindow.letsGetStarted();
+        wasdWindow.makeVisible();
     }
 
     private static void addSomeBoxes(World world) {

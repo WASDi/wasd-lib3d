@@ -6,7 +6,6 @@ import com.wasd.lib3d.World;
 import com.wasd.lib3d.rendering.Renderer;
 
 import javax.swing.JPanel;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 
@@ -18,6 +17,8 @@ public class Panel3D extends JPanel {
     public Panel3D(World world) {
         this.world = world;
         camera = new Camera();
+
+        setBackground(Settings.BACKGROUND_COLOR);
     }
 
     public void addFullMouseListener(MouseAdapter mouseAdapter) {
@@ -29,8 +30,6 @@ public class Panel3D extends JPanel {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        graphics.setColor(Color.BLACK);
-        graphics.fillRect(0, 0, getWidth(), getHeight());
 
         Renderer renderer = new Renderer(graphics, getWidth(), getHeight());
         world.render(renderer, camera);
