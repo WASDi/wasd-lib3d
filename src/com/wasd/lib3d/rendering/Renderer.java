@@ -77,18 +77,15 @@ public class Renderer {
      */
     @Nullable
     private static Color colorBasedOnDistance(Drawable drawable) {
-        float distance = drawable.getZDistanceFromCamera();
+        float zDistance = drawable.getZDistanceFromCamera();
         Color oldColor = drawable.getColor();
 
-        float distanceForMaxColor = .5f;
-        float distanceForLeastColor = 4f;
-
-        if (distance < distanceForMaxColor) {
+        if (zDistance < Settings.DISTANCE_OR_CLOSER_FOR_BRIGHTEST_COLOR) {
             return oldColor;
-        } else if (distance > distanceForLeastColor) {
+        } else if (zDistance > Settings.MAX_DISTANCE_TO_RENDER) {
             return null;
         }
-        float fogFactor = 1 - (distance - distanceForMaxColor) / (distanceForLeastColor - distanceForMaxColor);
+        float fogFactor = 1 - (zDistance - Settings.DISTANCE_OR_CLOSER_FOR_BRIGHTEST_COLOR) / (Settings.MAX_DISTANCE_TO_RENDER - Settings.DISTANCE_OR_CLOSER_FOR_BRIGHTEST_COLOR);
         float red = oldColor.getRed() * fogFactor;
         float green = oldColor.getGreen() * fogFactor;
         float blue = oldColor.getBlue() * fogFactor;

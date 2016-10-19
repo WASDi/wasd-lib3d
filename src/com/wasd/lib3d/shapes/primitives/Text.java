@@ -22,10 +22,6 @@ public class Text implements PrimitiveShape<DrawableText>, Renderable {
         drawable = new DrawableText(text);
     }
 
-    public Float3 getPos() {
-        return pos;
-    }
-
     @Override
     public void update(Camera camera) {
         Float2 locationOnScreen = Settings.PROJECTION.locationOnScreen(camera, pos);

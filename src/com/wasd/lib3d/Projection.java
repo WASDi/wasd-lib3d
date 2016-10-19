@@ -30,7 +30,7 @@ public enum Projection {
     };
 
     /**
-     * @return null iff not to render
+     * @return null iff not to render because outside screen
      */
     public abstract Float2 locationOnScreen(Camera camera, Float3 pos);
 

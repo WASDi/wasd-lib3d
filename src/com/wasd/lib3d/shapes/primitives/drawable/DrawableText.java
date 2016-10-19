@@ -1,5 +1,7 @@
 package com.wasd.lib3d.shapes.primitives.drawable;
 
+import com.wasd.lib3d.Settings;
+
 public class DrawableText extends DrawableDot {
 
     private final String text;
@@ -13,7 +15,7 @@ public class DrawableText extends DrawableDot {
     }
 
     public boolean shouldRender() {
-        return getLocationOnScreen() != null && getSize() > .5f;
+        return getLocationOnScreen() != null && getSize() > .5f && getZDistanceFromCamera() < Settings.MAX_DISTANCE_TO_RENDER;
     }
 
 }
