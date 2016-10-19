@@ -8,6 +8,7 @@ import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableText;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 public class Renderer {
@@ -40,9 +41,6 @@ public class Renderer {
 
     public void renderDot(DrawableDot drawableDot) {
         int dotDrawSize = Math.round(drawableDot.getSize());
-        if (dotDrawSize <= 1) {
-            return;
-        }
         Color c = colorBasedOnDistance(drawableDot);
         if (c == null) {
             return;
@@ -58,10 +56,7 @@ public class Renderer {
     public void renderText(DrawableText drawableText) {
         //TODO http://stackoverflow.com/questions/27706197/how-can-i-center-graphics-drawstring-in-java
 
-        int dotDrawSize = Math.round(drawableText.getSize());
-        if (dotDrawSize <= 1) {
-            return;
-        }
+        int fontSize = Math.round(drawableText.getSize());
         Color c = colorBasedOnDistance(drawableText);
         if (c == null) {
             return;
@@ -70,8 +65,13 @@ public class Renderer {
         float pixelY = centerY + drawableText.getLocationOnScreen().y * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
 
         graphics.setColor(c);
-        graphics.drawString(drawableText.getText(), Math.round(pixelX - dotDrawSize / 2f), Math.round(pixelY - dotDrawSize / 2f));
+        graphics.setFont(createFont(fontSize));
+        graphics.drawString(drawableText.getText(), Math.round(pixelX), Math.round(pixelY));
         //TODO REMOVE DUPLICATE CODE !!! same as above but drawString instead of fillOval
+    }
+
+    private Font createFont(int fontSize) {
+        return new Font(null, Font.PLAIN, fontSize);
     }
 
     /**

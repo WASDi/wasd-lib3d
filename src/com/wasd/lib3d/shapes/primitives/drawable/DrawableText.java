@@ -11,4 +11,9 @@ public class DrawableText extends DrawableDot {
     public String getText() {
         return text;
     }
+
+    public boolean shouldRender() {
+        return getLocationOnScreen() != null && getSize() > .5f;
+    }
+
 }

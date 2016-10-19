@@ -36,7 +36,7 @@ public class DrawableDot extends Drawable {
 
     @Override
     public boolean shouldRender() {
-        return locationOnScreen != null;
+        return locationOnScreen != null && size > 1.5f;
     }
 
 }

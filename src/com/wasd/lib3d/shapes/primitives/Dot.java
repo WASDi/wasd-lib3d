@@ -27,7 +27,7 @@ public class Dot implements PrimitiveShape<DrawableDot> {
         Float2 locationOnScreen = Settings.PROJECTION.locationOnScreen(camera, pos);
 
         drawable.setLocationOnScreen(locationOnScreen);
-        if (!drawable.shouldRender()) {
+        if (locationOnScreen == null) {
             return;
         }
 

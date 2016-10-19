@@ -31,7 +31,7 @@ public class Text implements PrimitiveShape<DrawableText>, Renderable {
         Float2 locationOnScreen = Settings.PROJECTION.locationOnScreen(camera, pos);
         drawable.setLocationOnScreen(locationOnScreen);
 
-        if (!drawable.shouldRender()) {
+        if (locationOnScreen == null) {
             return;
         }
 
