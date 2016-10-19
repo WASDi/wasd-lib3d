@@ -37,17 +37,12 @@ public class Sphere extends Shape {
                 dots.add(dotInRing);
             }
         }
-
-
-        dots.forEach(dot -> dotsAsDrawable.add(dot.getDrawable()));
     }
 
     private void initLinesBetweenDots() {
         initLinesToTopAndBottom();
         initLinesBetweenRings();
         initLinesWithinRings();
-
-        lines.forEach(dot -> linesAsDrawable.add(dot.getDrawable()));
     }
 
     private void initLinesToTopAndBottom() {

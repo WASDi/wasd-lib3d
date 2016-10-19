@@ -34,15 +34,11 @@ public class Plot extends Shape {
                 dots.add(new Dot(dotX, y - yValue * halfSize, dotZ));
             }
         }
-
-        dots.forEach(dot -> dotsAsDrawable.add(dot.getDrawable()));
     }
 
     private void initLinesBetweenDots() {
         initXLines();
         initZLines();
-
-        lines.forEach(dot -> linesAsDrawable.add(dot.getDrawable()));
     }
 
     private void initXLines() {

@@ -2,10 +2,9 @@ package com.wasd.lib3d.gui;
 
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
+import com.wasd.lib3d.rendering.Layer;
 import com.wasd.lib3d.rendering.Renderer;
 import com.wasd.lib3d.shapes.Shape;
-import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
-import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -50,21 +49,13 @@ public class Panel3D extends JPanel {
 
     private void drawAllLines(Renderer renderer) {
         for (Shape shape : shapes) {
-            for (DrawableLine drawableLine : shape.getDrawableLinesAfterCalculation()) {
-                if (drawableLine.shouldRender()) {
-                    renderer.renderLine(drawableLine);
-                }
-            }
+            shape.render(renderer, Layer.LINES);
         }
     }
 
     private void drawAllDots(Renderer renderer) {
         for (Shape shape : shapes) {
-            for (DrawableDot drawableDot : shape.getDrawableDotsAfterCalculation()) {
-                if (drawableDot.shouldRender()) {
-                    renderer.renderDot(drawableDot);
-                }
-            }
+            shape.render(renderer, Layer.DOTS);
         }
     }
 
