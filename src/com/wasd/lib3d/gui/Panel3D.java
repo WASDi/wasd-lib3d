@@ -2,23 +2,21 @@ package com.wasd.lib3d.gui;
 
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
-import com.wasd.lib3d.rendering.Layer;
+import com.wasd.lib3d.World;
 import com.wasd.lib3d.rendering.Renderer;
-import com.wasd.lib3d.shapes.Shape;
 
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Panel3D extends JPanel {
 
-    private List<Shape> shapes = new ArrayList<>();
+    private final World world;
     private final Camera camera;
 
-    public Panel3D() {
+    public Panel3D(World world) {
+        this.world = world;
         camera = new Camera();
     }
 
@@ -34,29 +32,8 @@ public class Panel3D extends JPanel {
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0, 0, getWidth(), getHeight());
 
-        updateDrawables();
-
         Renderer renderer = new Renderer(graphics, getWidth(), getHeight());
-        drawAllLines(renderer);
-        drawAllDots(renderer);
-    }
-
-    private void updateDrawables() {
-        for (Shape shape : shapes) {
-            shape.updateDrawables(camera);
-        }
-    }
-
-    private void drawAllLines(Renderer renderer) {
-        for (Shape shape : shapes) {
-            shape.render(renderer, Layer.LINES);
-        }
-    }
-
-    private void drawAllDots(Renderer renderer) {
-        for (Shape shape : shapes) {
-            shape.render(renderer, Layer.DOTS);
-        }
+        world.render(renderer, camera);
     }
 
     public void onMouseDrag(int dx, int dy) {
@@ -70,7 +47,4 @@ public class Panel3D extends JPanel {
         repaint();
     }
 
-    public void addShape(Shape shape) {
-        shapes.add(shape);
-    }
 }

@@ -1,7 +1,6 @@
 package com.wasd.lib3d.shapes;
 
 import com.wasd.lib3d.Camera;
-import com.wasd.lib3d.future_features.World;
 import com.wasd.lib3d.rendering.Layer;
 import com.wasd.lib3d.rendering.Renderable;
 import com.wasd.lib3d.rendering.Renderer;
@@ -13,21 +12,17 @@ import java.util.ArrayList;
 
 public abstract class Shape implements Renderable {
 
-    /**
-     * This is SHIT !!! Need a smarter way. Will look too ugly after adding Text too.
-     * Start using #{@link World}
-     */
+    //TODO array instead of List? As exact size is known
     protected final ArrayList<Dot> dots;
-
     protected final ArrayList<Line> lines;
 
     public Shape(int numDots, int numLines) {
         dots = new ArrayList<>(numDots);
-
         lines = new ArrayList<>(numLines);
     }
 
-    public void updateDrawables(Camera camera) {
+    @Override
+    public void update(Camera camera) {
         dots.forEach(dot -> dot.updateDrawable(camera));
         lines.forEach(line -> line.updateDrawable(camera));
     }
