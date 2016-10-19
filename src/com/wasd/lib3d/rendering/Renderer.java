@@ -2,6 +2,7 @@ package com.wasd.lib3d.rendering;
 
 import com.sun.istack.internal.Nullable;
 import com.wasd.lib3d.Settings;
+import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.shapes.primitives.drawable.Drawable;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
@@ -29,14 +30,12 @@ public class Renderer {
             return;
         }
 
-        float pixelX1 = centerX + drawableLine.getStartLocationOnScreen().x * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-        float pixelY1 = centerY + drawableLine.getStartLocationOnScreen().y * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-        float pixelX2 = centerX + drawableLine.getEndLocationOnScreen().x * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-        float pixelY2 = centerY + drawableLine.getEndLocationOnScreen().y * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+        Float2 pixel1 = relativeToAbsolutePixels(drawableLine.getStartLocationOnScreen());
+        Float2 pixel2 = relativeToAbsolutePixels(drawableLine.getEndLocationOnScreen());
 
         graphics.setColor(c);
-        graphics.drawLine(Math.round(pixelX1), Math.round(pixelY1),
-                Math.round(pixelX2), Math.round(pixelY2));
+        graphics.drawLine(Math.round(pixel1.x), Math.round(pixel1.y),
+                Math.round(pixel2.x), Math.round(pixel2.y));
     }
 
     public void renderDot(DrawableDot drawableDot) {
@@ -45,11 +44,11 @@ public class Renderer {
         if (c == null) {
             return;
         }
-        float pixelX = centerX + drawableDot.getLocationOnScreen().x * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-        float pixelY = centerY + drawableDot.getLocationOnScreen().y * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+
+        Float2 pixel = relativeToAbsolutePixels(drawableDot.getLocationOnScreen());
 
         graphics.setColor(c);
-        graphics.fillOval(Math.round(pixelX - dotDrawSize / 2f), Math.round(pixelY - dotDrawSize / 2f),
+        graphics.fillOval(Math.round(pixel.x - dotDrawSize / 2f), Math.round(pixel.y - dotDrawSize / 2f),
                 dotDrawSize, dotDrawSize);
     }
 
@@ -61,12 +60,11 @@ public class Renderer {
         if (c == null) {
             return;
         }
-        float pixelX = centerX + drawableText.getLocationOnScreen().x * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-        float pixelY = centerY + drawableText.getLocationOnScreen().y * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+        Float2 pixel = relativeToAbsolutePixels(drawableText.getLocationOnScreen());
 
         graphics.setColor(c);
         graphics.setFont(createFont(fontSize));
-        graphics.drawString(drawableText.getText(), Math.round(pixelX), Math.round(pixelY));
+        graphics.drawString(drawableText.getText(), Math.round(pixel.x), Math.round(pixel.y));
         //TODO REMOVE DUPLICATE CODE !!! same as above but drawString instead of fillOval
     }
 
@@ -97,5 +95,11 @@ public class Renderer {
         return new Color((int) red,
                 (int) green,
                 (int) blue);
+    }
+
+    private Float2 relativeToAbsolutePixels(Float2 relativeLocation) {
+        float pixelX = centerX + relativeLocation.x * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+        float pixelY = centerY + relativeLocation.y * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+        return new Float2(pixelX, pixelY);
     }
 }
