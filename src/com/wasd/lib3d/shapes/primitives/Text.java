@@ -35,8 +35,8 @@ public class Text implements PrimitiveShape<DrawableText>, Renderable {
             return;
         }
 
-        drawable.setSize(TEXT_SIZE_FACTOR / camera.distanceFrom(pos));
         drawable.setZDistanceFromCamera(pos.z - camera.getZ());
+        drawable.setSize(TEXT_SIZE_FACTOR / drawable.getZDistanceFromCamera());
     }
 
     @Override

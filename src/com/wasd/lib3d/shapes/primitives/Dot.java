@@ -31,8 +31,8 @@ public class Dot implements PrimitiveShape<DrawableDot> {
             return;
         }
 
-        drawable.setSize(DOT_SIZE_FACTOR / camera.distanceFrom(pos));
         drawable.setZDistanceFromCamera(pos.z - camera.getZ());
+        drawable.setSize(DOT_SIZE_FACTOR / drawable.getZDistanceFromCamera());
     }
 
     @Override

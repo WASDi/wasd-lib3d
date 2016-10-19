@@ -24,7 +24,9 @@ public class Main {
 
         world.add(new Box(-.2f, -1f, .5f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
         world.add(new Box(.2f, -1f, .5f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
-        world.add(new Text(0f, -1f, .5f, "Shit"));
+
+        world.add(new Text(0f, -.5f, .45f, "Shit shit shit shit"));
+        world.add(new Box(0f, -.5f, .5f, .1f).withLineColor(Color.GRAY));
 
         world.add(new Box(0, -1f, 1f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
 
