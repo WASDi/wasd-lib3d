@@ -5,7 +5,7 @@ import com.wasd.lib3d.shapes.primitives.drawable.Drawable;
 
 public interface PrimitiveShape<DRAWABLE extends Drawable> {
 
-    void updateDrawable(Camera camera);
+    void update(Camera camera);
 
     DRAWABLE getDrawable();
 

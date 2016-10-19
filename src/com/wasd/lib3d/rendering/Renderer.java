@@ -56,8 +56,22 @@ public class Renderer {
     }
 
     public void renderText(DrawableText drawableText) {
-        //TODO... same as above but drawString instead of fillOval = don't duplicate code !!!
-        //http://stackoverflow.com/questions/27706197/how-can-i-center-graphics-drawstring-in-java
+        //TODO http://stackoverflow.com/questions/27706197/how-can-i-center-graphics-drawstring-in-java
+
+        int dotDrawSize = Math.round(drawableText.getSize());
+        if (dotDrawSize <= 1) {
+            return;
+        }
+        Color c = colorBasedOnDistance(drawableText);
+        if (c == null) {
+            return;
+        }
+        float pixelX = centerX + drawableText.getLocationOnScreen().x * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+        float pixelY = centerY + drawableText.getLocationOnScreen().y * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+
+        graphics.setColor(c);
+        graphics.drawString(drawableText.getText(), Math.round(pixelX - dotDrawSize / 2f), Math.round(pixelY - dotDrawSize / 2f));
+        //TODO REMOVE DUPLICATE CODE !!! same as above but drawString instead of fillOval
     }
 
     /**

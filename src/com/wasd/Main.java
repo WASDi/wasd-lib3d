@@ -6,6 +6,7 @@ import com.wasd.lib3d.misc.Functions;
 import com.wasd.lib3d.shapes.Box;
 import com.wasd.lib3d.shapes.Plot;
 import com.wasd.lib3d.shapes.Sphere;
+import com.wasd.lib3d.shapes.primitives.Text;
 
 import java.awt.Color;
 
@@ -23,7 +24,7 @@ public class Main {
 
         world.add(new Box(-.2f, -1f, .5f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
         world.add(new Box(.2f, -1f, .5f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
-//        world.add(new Text(0f, -1f, .5f, "Shit"));
+        world.add(new Text(0f, -1f, .5f, "Shit"));
 
         world.add(new Box(0, -1f, 1f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
 

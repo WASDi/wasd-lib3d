@@ -23,7 +23,7 @@ public class Dot implements PrimitiveShape<DrawableDot> {
     }
 
     @Override
-    public void updateDrawable(Camera camera) {
+    public void update(Camera camera) {
         Float2 locationOnScreen = Settings.PROJECTION.locationOnScreen(camera, pos);
 
         drawable.setLocationOnScreen(locationOnScreen);

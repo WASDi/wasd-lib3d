@@ -16,7 +16,7 @@ public class Line implements PrimitiveShape<DrawableLine> {
     }
 
     @Override
-    public void updateDrawable(Camera camera) {
+    public void update(Camera camera) {
         drawable.setStartLocationOnScreen(fromDot.getDrawable().getLocationOnScreen());
         drawable.setEndLocationOnScreen(toDot.getDrawable().getLocationOnScreen());
 

@@ -23,8 +23,8 @@ public abstract class Shape implements Renderable {
 
     @Override
     public void update(Camera camera) {
-        dots.forEach(dot -> dot.updateDrawable(camera));
-        lines.forEach(line -> line.updateDrawable(camera));
+        dots.forEach(dot -> dot.update(camera));
+        lines.forEach(line -> line.update(camera));
     }
 
     public Shape withDotColor(Color color) {
@@ -41,9 +41,17 @@ public abstract class Shape implements Renderable {
     public void render(Renderer renderer, Layer layer) {
         //TODO refactor
         if (layer == Layer.DOTS) {
-            dots.forEach(dot -> renderer.renderDot(dot.getDrawable()));
+            for (Dot dot : dots) {
+                if (dot.getDrawable().shouldRender()) {
+                    renderer.renderDot(dot.getDrawable());
+                }
+            }
         } else if (layer == Layer.LINES) {
-            lines.forEach(line -> renderer.renderLine(line.getDrawable()));
+            for (Line line : lines) {
+                if (line.getDrawable().shouldRender()) {
+                    renderer.renderLine(line.getDrawable());
+                }
+            }
         }
     }
 }
