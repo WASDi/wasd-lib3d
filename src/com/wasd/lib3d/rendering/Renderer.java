@@ -24,48 +24,47 @@ public class Renderer {
         centerY = height / 2;
     }
 
-    public void renderLine(DrawableLine drawableLine) {
-        Color c = colorBasedOnDistance(drawableLine);
-        if (c == null) {
+    public void render(Drawable drawable){
+        Color color = colorBasedOnDistance(drawable);
+        if (color == null) {
             return;
         }
+        graphics.setColor(color);
 
+        if(drawable instanceof DrawableLine){
+            renderLine((DrawableLine) drawable);
+        } else if(drawable instanceof DrawableDot){
+            DrawableDot dotted = (DrawableDot)drawable;
+
+            int size = Math.round(dotted.getSize());
+            Float2 pixel = relativeToAbsolutePixels(dotted.getLocationOnScreen());
+
+            if(drawable instanceof DrawableText){
+                renderText(((DrawableText) drawable).getText(), size, pixel);
+            } else {
+                renderDot(size, pixel);
+            }
+        }
+    }
+
+    private void renderLine(DrawableLine drawableLine) {
         Float2 pixel1 = relativeToAbsolutePixels(drawableLine.getStartLocationOnScreen());
         Float2 pixel2 = relativeToAbsolutePixels(drawableLine.getEndLocationOnScreen());
 
-        graphics.setColor(c);
         graphics.drawLine(Math.round(pixel1.x), Math.round(pixel1.y),
                 Math.round(pixel2.x), Math.round(pixel2.y));
     }
 
-    public void renderDot(DrawableDot drawableDot) {
-        int dotDrawSize = Math.round(drawableDot.getSize());
-        Color c = colorBasedOnDistance(drawableDot);
-        if (c == null) {
-            return;
-        }
-
-        Float2 pixel = relativeToAbsolutePixels(drawableDot.getLocationOnScreen());
-
-        graphics.setColor(c);
+    private void renderDot(int dotDrawSize, Float2 pixel) {
         graphics.fillOval(Math.round(pixel.x - dotDrawSize / 2f), Math.round(pixel.y - dotDrawSize / 2f),
                 dotDrawSize, dotDrawSize);
     }
 
-    public void renderText(DrawableText drawableText) {
+    private void renderText(String text, int fontSize, Float2 pixel) {
         //TODO http://stackoverflow.com/questions/27706197/how-can-i-center-graphics-drawstring-in-java
 
-        int fontSize = Math.round(drawableText.getSize());
-        Color c = colorBasedOnDistance(drawableText);
-        if (c == null) {
-            return;
-        }
-        Float2 pixel = relativeToAbsolutePixels(drawableText.getLocationOnScreen());
-
-        graphics.setColor(c);
         graphics.setFont(createFont(fontSize));
-        graphics.drawString(drawableText.getText(), Math.round(pixel.x), Math.round(pixel.y));
-        //TODO REMOVE DUPLICATE CODE !!! same as above but drawString instead of fillOval
+        graphics.drawString(text, Math.round(pixel.x), Math.round(pixel.y));
     }
 
     private Font createFont(int fontSize) {
