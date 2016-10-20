@@ -2,6 +2,7 @@ package com.wasd.lib3d.rendering;
 
 import com.sun.istack.internal.Nullable;
 import com.wasd.lib3d.Settings;
+import com.wasd.lib3d.misc.FontCache;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.shapes.primitives.drawable.Drawable;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
@@ -9,7 +10,6 @@ import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableText;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 
 public class Renderer {
@@ -63,13 +63,9 @@ public class Renderer {
         Float2 pixel = relativeToAbsolutePixels(drawableText.getLocationOnScreen());
 
         graphics.setColor(c);
-        graphics.setFont(createFont(fontSize));
+        graphics.setFont(FontCache.get(fontSize));
         graphics.drawString(drawableText.getText(), Math.round(pixel.x), Math.round(pixel.y));
         //TODO REMOVE DUPLICATE CODE !!! same as above but drawString instead of fillOval
-    }
-
-    private Font createFont(int fontSize) {
-        return new Font(null, Font.PLAIN, fontSize);
     }
 
     /**
