@@ -43,13 +43,13 @@ public abstract class Shape implements Renderable {
         if (layer == Layer.DOTS) {
             for (Dot dot : dots) {
                 if (dot.getDrawable().shouldRender()) {
-                    renderer.renderDot(dot.getDrawable());
+                    renderer.render(dot.getDrawable());
                 }
             }
         } else if (layer == Layer.LINES) {
             for (Line line : lines) {
                 if (line.getDrawable().shouldRender()) {
-                    renderer.renderLine(line.getDrawable());
+                    renderer.render(line.getDrawable());
                 }
             }
         }
