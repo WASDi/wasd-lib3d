@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public abstract class Shape implements Renderable {
 
     //TODO array instead of List? As exact size is known
-    protected final ArrayList<Dot> dots;
-    protected final ArrayList<Line> lines;
+    final ArrayList<Dot> dots;
+    final ArrayList<Line> lines;
 
     public Shape(int numDots, int numLines) {
         dots = new ArrayList<>(numDots);
