@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public abstract class Shape implements Renderable {
 
     //TODO array instead of List? As exact size is known
-    protected final ArrayList<Dot> dots;
-    protected final ArrayList<Line> lines;
+    final ArrayList<Dot> dots;
+    final ArrayList<Line> lines;
 
     public Shape(int numDots, int numLines) {
         dots = new ArrayList<>(numDots);
@@ -43,13 +43,13 @@ public abstract class Shape implements Renderable {
         if (layer == Layer.DOTS) {
             for (Dot dot : dots) {
                 if (dot.getDrawable().shouldRender()) {
-                    renderer.renderDot(dot.getDrawable());
+                    renderer.render(dot.getDrawable());
                 }
             }
         } else if (layer == Layer.LINES) {
             for (Line line : lines) {
                 if (line.getDrawable().shouldRender()) {
-                    renderer.renderLine(line.getDrawable());
+                    renderer.render(line.getDrawable());
                 }
             }
         }

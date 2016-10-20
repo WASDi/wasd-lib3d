@@ -45,7 +45,7 @@ public class Text implements PrimitiveShape<DrawableText>, Renderable {
         //TODO refactor
         if (layer == Layer.TEXTS) {
             if (drawable.shouldRender()) {
-                renderer.renderText(drawable);
+                renderer.render(drawable);
             }
         }
     }
