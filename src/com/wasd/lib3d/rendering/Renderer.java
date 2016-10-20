@@ -24,26 +24,30 @@ public class Renderer {
         centerY = height / 2;
     }
 
-    public void render(Drawable drawable){
+    public void render(Drawable drawable) {
         Color color = colorBasedOnDistance(drawable);
         if (color == null) {
             return;
         }
         graphics.setColor(color);
 
-        if(drawable instanceof DrawableLine){
+        //TODO refactor into something better, like Visitor pattern
+        if (drawable instanceof DrawableLine) {
             renderLine((DrawableLine) drawable);
-        } else if(drawable instanceof DrawableDot){
-            DrawableDot dotted = (DrawableDot)drawable;
+        } else if (drawable instanceof DrawableDot) {
+            DrawableDot drawableDot = (DrawableDot) drawable;
 
-            int size = Math.round(dotted.getSize());
-            Float2 positionPixel = relativeToAbsolutePixels(dotted.getLocationOnScreen());
+            int size = Math.round(drawableDot.getSize());
+            Float2 positionPixel = relativeToAbsolutePixels(drawableDot.getLocationOnScreen());
 
-            if(drawable instanceof DrawableText){
-                renderText(((DrawableText) drawable).getText(), size, positionPixel);
-            } else {
-                renderDot(size, positionPixel);
-            }
+            renderDot(size, positionPixel);
+        } else if (drawable instanceof DrawableText) {
+            DrawableText drawableText = (DrawableText) drawable;
+
+            int size = Math.round(drawableText.getSize());
+            Float2 positionPixel = relativeToAbsolutePixels(drawableText.getLocationOnScreen());
+
+            renderText(drawableText.getText(), size, positionPixel);
         }
     }
 
