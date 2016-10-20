@@ -37,34 +37,34 @@ public class Renderer {
             DrawableDot dotted = (DrawableDot)drawable;
 
             int size = Math.round(dotted.getSize());
-            Float2 pixel = relativeToAbsolutePixels(dotted.getLocationOnScreen());
+            Float2 positionPixel = relativeToAbsolutePixels(dotted.getLocationOnScreen());
 
             if(drawable instanceof DrawableText){
-                renderText(((DrawableText) drawable).getText(), size, pixel);
+                renderText(((DrawableText) drawable).getText(), size, positionPixel);
             } else {
-                renderDot(size, pixel);
+                renderDot(size, positionPixel);
             }
         }
     }
 
     private void renderLine(DrawableLine drawableLine) {
-        Float2 pixel1 = relativeToAbsolutePixels(drawableLine.getStartLocationOnScreen());
-        Float2 pixel2 = relativeToAbsolutePixels(drawableLine.getEndLocationOnScreen());
+        Float2 positionPixel1 = relativeToAbsolutePixels(drawableLine.getStartLocationOnScreen());
+        Float2 positionPixel2 = relativeToAbsolutePixels(drawableLine.getEndLocationOnScreen());
 
-        graphics.drawLine(Math.round(pixel1.x), Math.round(pixel1.y),
-                Math.round(pixel2.x), Math.round(pixel2.y));
+        graphics.drawLine(Math.round(positionPixel1.x), Math.round(positionPixel1.y),
+                Math.round(positionPixel2.x), Math.round(positionPixel2.y));
     }
 
-    private void renderDot(int dotDrawSize, Float2 pixel) {
-        graphics.fillOval(Math.round(pixel.x - dotDrawSize / 2f), Math.round(pixel.y - dotDrawSize / 2f),
+    private void renderDot(int dotDrawSize, Float2 positionPixel) {
+        graphics.fillOval(Math.round(positionPixel.x - dotDrawSize / 2f), Math.round(positionPixel.y - dotDrawSize / 2f),
                 dotDrawSize, dotDrawSize);
     }
 
-    private void renderText(String text, int fontSize, Float2 pixel) {
+    private void renderText(String text, int fontSize, Float2 positionPixel) {
         //TODO http://stackoverflow.com/questions/27706197/how-can-i-center-graphics-drawstring-in-java
 
         graphics.setFont(createFont(fontSize));
-        graphics.drawString(text, Math.round(pixel.x), Math.round(pixel.y));
+        graphics.drawString(text, Math.round(positionPixel.x), Math.round(positionPixel.y));
     }
 
     private Font createFont(int fontSize) {
