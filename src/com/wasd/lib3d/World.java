@@ -1,6 +1,6 @@
 package com.wasd.lib3d;
 
-import com.wasd.lib3d.rendering.RenderGroup;
+import com.wasd.lib3d.objects.Object3D;
 import com.wasd.lib3d.rendering.Renderer;
 
 import java.util.ArrayList;
@@ -8,9 +8,9 @@ import java.util.List;
 
 public class World {
 
-    private final List<RenderGroup> objects = new ArrayList<>();
+    private final List<Object3D> objects = new ArrayList<>();
 
-    public void add(RenderGroup object) {
+    public void add(Object3D object) {
         objects.add(object);
     }
 

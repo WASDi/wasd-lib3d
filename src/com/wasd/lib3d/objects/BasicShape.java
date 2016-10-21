@@ -3,13 +3,12 @@ package com.wasd.lib3d.objects;
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.objects.primitives.Dot;
 import com.wasd.lib3d.objects.primitives.Line;
-import com.wasd.lib3d.rendering.RenderGroup;
 import com.wasd.lib3d.rendering.Renderer;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
-public abstract class BasicShape implements RenderGroup {
+public abstract class BasicShape implements Object3D {
 
     //TODO array instead of List? As exact size is known
     protected final ArrayList<Dot> dots;
