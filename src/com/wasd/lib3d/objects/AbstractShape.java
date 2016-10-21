@@ -1,8 +1,8 @@
 package com.wasd.lib3d.objects;
 
 import com.wasd.lib3d.Camera;
-import com.wasd.lib3d.objects.primitives.Dot;
-import com.wasd.lib3d.objects.primitives.Line;
+import com.wasd.lib3d.objects.atoms.Dot;
+import com.wasd.lib3d.objects.atoms.Line;
 import com.wasd.lib3d.rendering.Renderer;
 
 import java.awt.Color;

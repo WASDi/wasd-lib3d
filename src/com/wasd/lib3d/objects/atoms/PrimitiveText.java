@@ -1,13 +1,13 @@
-package com.wasd.lib3d.objects.primitives;
+package com.wasd.lib3d.objects.atoms;
 
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
-import com.wasd.lib3d.objects.primitives.framedata.FrameDataForText;
+import com.wasd.lib3d.objects.atoms.framedata.FrameDataForText;
 import com.wasd.lib3d.rendering.Renderer;
 
-public class PrimitiveText implements PrimitiveShape<FrameDataForText> {
+public class PrimitiveText implements Atom<FrameDataForText> {
 
     private static final float TEXT_SIZE_FACTOR = 3f;
 

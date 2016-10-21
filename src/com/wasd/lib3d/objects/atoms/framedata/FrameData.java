@@ -1,4 +1,4 @@
-package com.wasd.lib3d.objects.primitives.framedata;
+package com.wasd.lib3d.objects.atoms.framedata;
 
 import java.awt.Color;
 

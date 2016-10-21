@@ -1,10 +1,10 @@
-package com.wasd.lib3d.objects.primitives;
+package com.wasd.lib3d.objects.atoms;
 
 import com.wasd.lib3d.Camera;
-import com.wasd.lib3d.objects.primitives.framedata.FrameDataForLine;
+import com.wasd.lib3d.objects.atoms.framedata.FrameDataForLine;
 import com.wasd.lib3d.rendering.Renderer;
 
-public class Line implements PrimitiveShape<FrameDataForLine> {
+public class Line implements Atom<FrameDataForLine> {
 
     private FrameDataForLine frameData = new FrameDataForLine();
 

@@ -4,9 +4,9 @@ Primitive 3D graphics.
 ###### Basic concepts
 
 * World: Contains every 3D object to be rendered.
-* Object3D: A 3D object, consisting of one or more PrimitiveShape.
-* PrimitiveShape/Renderable: A fundamental 3D-shape which can be projected onto a 2D surface.
-* FrameData: Represents how a Renderable (3D) should be drawn on a 2D surface (your monitor). Valid for one frame
+* Object3D: A 3D object, consisting of one or more Atoms.
+* Atom: A fundamental 3D element which can be projected onto a 2D surface.
+* FrameData: Represents how an Atom should be drawn on a 2D surface (your monitor). Valid for one frame.
 
 The most interesting part, translates a 3D position to 2D based on camera position:
 

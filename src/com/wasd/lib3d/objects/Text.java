@@ -1,7 +1,7 @@
 package com.wasd.lib3d.objects;
 
 import com.wasd.lib3d.Camera;
-import com.wasd.lib3d.objects.primitives.PrimitiveText;
+import com.wasd.lib3d.objects.atoms.PrimitiveText;
 import com.wasd.lib3d.rendering.Renderer;
 
 public class Text implements Object3D {

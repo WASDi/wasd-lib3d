@@ -1,13 +1,13 @@
-package com.wasd.lib3d.objects.primitives;
+package com.wasd.lib3d.objects.atoms;
 
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
-import com.wasd.lib3d.objects.primitives.framedata.FrameDataForDot;
+import com.wasd.lib3d.objects.atoms.framedata.FrameDataForDot;
 import com.wasd.lib3d.rendering.Renderer;
 
-public class Dot implements PrimitiveShape<FrameDataForDot> {
+public class Dot implements Atom<FrameDataForDot> {
 
     private static final float DOT_SIZE_FACTOR = 3f;
 

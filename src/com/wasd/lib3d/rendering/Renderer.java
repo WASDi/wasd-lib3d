@@ -4,10 +4,10 @@ import com.sun.istack.internal.Nullable;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.misc.FontCache;
 import com.wasd.lib3d.model.Float2;
-import com.wasd.lib3d.objects.primitives.framedata.FrameData;
-import com.wasd.lib3d.objects.primitives.framedata.FrameDataForDot;
-import com.wasd.lib3d.objects.primitives.framedata.FrameDataForLine;
-import com.wasd.lib3d.objects.primitives.framedata.FrameDataForText;
+import com.wasd.lib3d.objects.atoms.framedata.FrameData;
+import com.wasd.lib3d.objects.atoms.framedata.FrameDataForDot;
+import com.wasd.lib3d.objects.atoms.framedata.FrameDataForLine;
+import com.wasd.lib3d.objects.atoms.framedata.FrameDataForText;
 
 import java.awt.Color;
 import java.awt.Graphics;

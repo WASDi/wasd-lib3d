@@ -1,7 +1,7 @@
 package com.wasd.lib3d.objects;
 
-import com.wasd.lib3d.objects.primitives.Dot;
-import com.wasd.lib3d.objects.primitives.Line;
+import com.wasd.lib3d.objects.atoms.Dot;
+import com.wasd.lib3d.objects.atoms.Line;
 
 public class Box extends AbstractShape {
 
