@@ -9,7 +9,7 @@ public class FrameDataForText extends FrameData {
 
     private final String text;
     private Float2 locationOnScreen;
-    private float size;
+    private float fontSize;
     private Color color = Color.WHITE;
 
     public FrameDataForText(String text) {
@@ -28,12 +28,12 @@ public class FrameDataForText extends FrameData {
         return locationOnScreen;
     }
 
-    public void setSize(float size) {
-        this.size = size;
+    public void setFontSize(float fontSize) {
+        this.fontSize = fontSize;
     }
 
-    public float getSize() {
-        return size;
+    public float getFontSize() {
+        return fontSize;
     }
 
     public Color getColor() {
@@ -42,7 +42,7 @@ public class FrameDataForText extends FrameData {
 
     @Override
     public boolean shouldRender() {
-        return locationOnScreen != null && size > .5f && getZDistanceFromCamera() < Settings.MAX_DISTANCE_TO_RENDER;
+        return locationOnScreen != null && fontSize > .5f && getZDistanceFromCamera() < Settings.MAX_DISTANCE_TO_RENDER;
     }
 
 }

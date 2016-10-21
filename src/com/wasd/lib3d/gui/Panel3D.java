@@ -3,6 +3,7 @@ package com.wasd.lib3d.gui;
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
+import com.wasd.lib3d.rendering.GraphicsWrapper;
 import com.wasd.lib3d.rendering.Renderer;
 
 import javax.swing.JPanel;
@@ -31,7 +32,7 @@ public class Panel3D extends JPanel {
     public void paint(Graphics graphics) {
         super.paint(graphics);
 
-        Renderer renderer = new Renderer(graphics, getWidth(), getHeight());
+        Renderer renderer = new Renderer(new GraphicsWrapper(graphics), getWidth(), getHeight());
         world.render(renderer, camera);
     }
 

@@ -30,7 +30,7 @@ public class PrimitiveText implements Atom<FrameDataForText> {
         }
 
         frameData.setZDistanceFromCamera(pos.z - camera.getZ());
-        frameData.setSize(TEXT_SIZE_FACTOR / frameData.getZDistanceFromCamera());
+        frameData.setFontSize(TEXT_SIZE_FACTOR / frameData.getZDistanceFromCamera());
     }
 
     @Override
