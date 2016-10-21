@@ -4,12 +4,10 @@ import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
-import com.wasd.lib3d.rendering.Layer;
-import com.wasd.lib3d.rendering.Renderable;
 import com.wasd.lib3d.rendering.Renderer;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableText;
 
-public class Text implements PrimitiveShape<DrawableText>, Renderable {
+public class PrimitiveText implements PrimitiveShape<DrawableText> {
 
     private static final float TEXT_SIZE_FACTOR = 3f;
 
@@ -17,7 +15,7 @@ public class Text implements PrimitiveShape<DrawableText>, Renderable {
 
     private final DrawableText drawable;
 
-    public Text(float x, float y, float z, String text) {
+    public PrimitiveText(float x, float y, float z, String text) {
         this.pos = new Float3(x, y, z);
         drawable = new DrawableText(text);
     }
@@ -41,12 +39,9 @@ public class Text implements PrimitiveShape<DrawableText>, Renderable {
     }
 
     @Override
-    public void render(Renderer renderer, Layer layer) {
-        //TODO refactor
-        if (layer == Layer.TEXTS) {
-            if (drawable.shouldRender()) {
-                renderer.renderText(drawable);
-            }
+    public void render(Renderer renderer) {
+        if (drawable.shouldRender()) {
+            renderer.renderText(drawable);
         }
     }
 }

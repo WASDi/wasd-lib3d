@@ -4,6 +4,7 @@ import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
+import com.wasd.lib3d.rendering.Renderer;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
 
 public class Dot implements PrimitiveShape<DrawableDot> {
@@ -33,6 +34,13 @@ public class Dot implements PrimitiveShape<DrawableDot> {
 
         drawable.setZDistanceFromCamera(pos.z - camera.getZ());
         drawable.setSize(DOT_SIZE_FACTOR / drawable.getZDistanceFromCamera());
+    }
+
+    @Override
+    public void render(Renderer renderer) {
+        if (drawable.shouldRender()) {
+            renderer.renderDot(drawable);
+        }
     }
 
     @Override

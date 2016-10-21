@@ -1,8 +1,7 @@
 package com.wasd.lib3d.shapes;
 
 import com.wasd.lib3d.Camera;
-import com.wasd.lib3d.rendering.Layer;
-import com.wasd.lib3d.rendering.Renderable;
+import com.wasd.lib3d.rendering.RenderGroup;
 import com.wasd.lib3d.rendering.Renderer;
 import com.wasd.lib3d.shapes.primitives.Dot;
 import com.wasd.lib3d.shapes.primitives.Line;
@@ -10,7 +9,7 @@ import com.wasd.lib3d.shapes.primitives.Line;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public abstract class Shape implements Renderable {
+public abstract class Shape implements RenderGroup {
 
     //TODO array instead of List? As exact size is known
     protected final ArrayList<Dot> dots;
@@ -38,20 +37,16 @@ public abstract class Shape implements Renderable {
     }
 
     @Override
-    public void render(Renderer renderer, Layer layer) {
-        //TODO refactor
-        if (layer == Layer.DOTS) {
-            for (Dot dot : dots) {
-                if (dot.getDrawable().shouldRender()) {
-                    renderer.renderDot(dot.getDrawable());
-                }
-            }
-        } else if (layer == Layer.LINES) {
-            for (Line line : lines) {
-                if (line.getDrawable().shouldRender()) {
-                    renderer.renderLine(line.getDrawable());
-                }
-            }
-        }
+    public void renderLineLayer(Renderer renderer) {
+        lines.forEach(line -> line.render(renderer));
+    }
+
+    @Override
+    public void renderDotLayer(Renderer renderer) {
+        dots.forEach(dot -> dot.render(renderer));
+    }
+
+    @Override
+    public void renderTextLayer(Renderer renderer) {
     }
 }

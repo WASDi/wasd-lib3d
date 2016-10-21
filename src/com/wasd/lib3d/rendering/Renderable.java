@@ -6,6 +6,6 @@ public interface Renderable {
 
     void update(Camera camera);
 
-    void render(Renderer renderer, Layer layer);
+    void render(Renderer renderer);
 
 }

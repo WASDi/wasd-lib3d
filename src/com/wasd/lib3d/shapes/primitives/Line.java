@@ -1,6 +1,7 @@
 package com.wasd.lib3d.shapes.primitives;
 
 import com.wasd.lib3d.Camera;
+import com.wasd.lib3d.rendering.Renderer;
 import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
 
 public class Line implements PrimitiveShape<DrawableLine> {
@@ -25,6 +26,13 @@ public class Line implements PrimitiveShape<DrawableLine> {
         }
 
         drawable.setZDistanceFromCamera((fromDot.getPos().z + toDot.getPos().z) / 2f - camera.getZ());
+    }
+
+    @Override
+    public void render(Renderer renderer) {
+        if (drawable.shouldRender()) {
+            renderer.renderLine(drawable);
+        }
     }
 
     @Override

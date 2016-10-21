@@ -6,7 +6,7 @@ import com.wasd.lib3d.misc.Functions;
 import com.wasd.lib3d.shapes.Box;
 import com.wasd.lib3d.shapes.Plot;
 import com.wasd.lib3d.shapes.Sphere;
-import com.wasd.lib3d.shapes.primitives.Text;
+import com.wasd.lib3d.shapes.Text;
 
 import java.awt.Color;
 
