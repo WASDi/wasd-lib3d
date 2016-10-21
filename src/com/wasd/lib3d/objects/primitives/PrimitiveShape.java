@@ -1,8 +1,8 @@
-package com.wasd.lib3d.shapes.primitives;
+package com.wasd.lib3d.objects.primitives;
 
 import com.wasd.lib3d.Camera;
+import com.wasd.lib3d.objects.primitives.framedata.FrameData;
 import com.wasd.lib3d.rendering.Renderable;
-import com.wasd.lib3d.shapes.primitives.framedata.FrameData;
 
 public interface PrimitiveShape<FRAMEDATA extends FrameData> extends Renderable {
 

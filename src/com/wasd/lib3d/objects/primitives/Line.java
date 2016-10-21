@@ -1,8 +1,8 @@
-package com.wasd.lib3d.shapes.primitives;
+package com.wasd.lib3d.objects.primitives;
 
 import com.wasd.lib3d.Camera;
+import com.wasd.lib3d.objects.primitives.framedata.FrameDataForLine;
 import com.wasd.lib3d.rendering.Renderer;
-import com.wasd.lib3d.shapes.primitives.framedata.FrameDataForLine;
 
 public class Line implements PrimitiveShape<FrameDataForLine> {
 

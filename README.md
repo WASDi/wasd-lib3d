@@ -3,12 +3,12 @@ Primitive 3D graphics.
 
 ###### Basic concepts
 
-* Shape: Collection of PrimitiveShape.
-* PrimitiveShape: A fundamental 3D-shape, dot or line.
-* FrameData: Represents how a PrimitiveShape (3D) should be drawn on a 2D surface (your monitor).
-* Renderable: Something which can be rendered by a Renderer...
+* World: Contains every object (RenderGroup) to be rendered
+* RenderGroup: Contains several Renderable
+* PrimitiveShape: A fundamental 3D-shape.
+* FrameData: Represents how a Renderable (3D) should be drawn on a 2D surface (your monitor). Valid for one frame
 
-The most intersting part, translates a 3D position to 2D based on camera position:
+The most interesting part, translates a 3D position to 2D based on camera position:
 
     float factor = 1 / (pos.z - camera.getZ());
     float x = factor * (pos.x - camera.getX());

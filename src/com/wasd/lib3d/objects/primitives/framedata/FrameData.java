@@ -1,4 +1,4 @@
-package com.wasd.lib3d.shapes.primitives.framedata;
+package com.wasd.lib3d.objects.primitives.framedata;
 
 import java.awt.Color;
 

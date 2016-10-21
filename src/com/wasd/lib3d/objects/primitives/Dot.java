@@ -1,11 +1,11 @@
-package com.wasd.lib3d.shapes.primitives;
+package com.wasd.lib3d.objects.primitives;
 
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
+import com.wasd.lib3d.objects.primitives.framedata.FrameDataForDot;
 import com.wasd.lib3d.rendering.Renderer;
-import com.wasd.lib3d.shapes.primitives.framedata.FrameDataForDot;
 
 public class Dot implements PrimitiveShape<FrameDataForDot> {
 

@@ -3,10 +3,10 @@ package com.wasd;
 import com.wasd.lib3d.World;
 import com.wasd.lib3d.gui.Window3D;
 import com.wasd.lib3d.misc.Functions;
-import com.wasd.lib3d.shapes.Box;
-import com.wasd.lib3d.shapes.Plot;
-import com.wasd.lib3d.shapes.Sphere;
-import com.wasd.lib3d.shapes.Text;
+import com.wasd.lib3d.objects.Box;
+import com.wasd.lib3d.objects.Plot;
+import com.wasd.lib3d.objects.Sphere;
+import com.wasd.lib3d.objects.Text;
 
 import java.awt.Color;
 

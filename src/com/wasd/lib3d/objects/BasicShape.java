@@ -1,10 +1,10 @@
-package com.wasd.lib3d.shapes;
+package com.wasd.lib3d.objects;
 
 import com.wasd.lib3d.Camera;
+import com.wasd.lib3d.objects.primitives.Dot;
+import com.wasd.lib3d.objects.primitives.Line;
 import com.wasd.lib3d.rendering.RenderGroup;
 import com.wasd.lib3d.rendering.Renderer;
-import com.wasd.lib3d.shapes.primitives.Dot;
-import com.wasd.lib3d.shapes.primitives.Line;
 
 import java.awt.Color;
 import java.util.ArrayList;

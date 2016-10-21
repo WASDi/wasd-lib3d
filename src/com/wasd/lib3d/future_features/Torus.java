@@ -1,6 +1,6 @@
 package com.wasd.lib3d.future_features;
 
-import com.wasd.lib3d.shapes.BasicShape;
+import com.wasd.lib3d.objects.BasicShape;
 
 public class Torus extends BasicShape {
 

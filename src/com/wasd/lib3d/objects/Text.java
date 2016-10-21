@@ -1,9 +1,9 @@
-package com.wasd.lib3d.shapes;
+package com.wasd.lib3d.objects;
 
 import com.wasd.lib3d.Camera;
+import com.wasd.lib3d.objects.primitives.PrimitiveText;
 import com.wasd.lib3d.rendering.RenderGroup;
 import com.wasd.lib3d.rendering.Renderer;
-import com.wasd.lib3d.shapes.primitives.PrimitiveText;
 
 public class Text implements RenderGroup {
 

@@ -1,7 +1,7 @@
-package com.wasd.lib3d.shapes;
+package com.wasd.lib3d.objects;
 
-import com.wasd.lib3d.shapes.primitives.Dot;
-import com.wasd.lib3d.shapes.primitives.Line;
+import com.wasd.lib3d.objects.primitives.Dot;
+import com.wasd.lib3d.objects.primitives.Line;
 
 public class Sphere extends BasicShape {
 
