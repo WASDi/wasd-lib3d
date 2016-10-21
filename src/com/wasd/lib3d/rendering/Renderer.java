@@ -1,10 +1,8 @@
 package com.wasd.lib3d.rendering;
 
-import com.sun.istack.internal.Nullable;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.misc.FontCache;
 import com.wasd.lib3d.model.Float2;
-import com.wasd.lib3d.objects.atoms.framedata.FrameData;
 import com.wasd.lib3d.objects.atoms.framedata.FrameDataForDot;
 import com.wasd.lib3d.objects.atoms.framedata.FrameDataForLine;
 import com.wasd.lib3d.objects.atoms.framedata.FrameDataForText;
@@ -25,7 +23,7 @@ public class Renderer {
     }
 
     public void renderLine(FrameDataForLine frameData) {
-        Color c = colorBasedOnDistance(frameData);
+        Color c = Colors.colorBasedOnDistance(frameData);
         if (c == null) {
             return;
         }
@@ -40,7 +38,7 @@ public class Renderer {
 
     public void renderDot(FrameDataForDot frameData) {
         int dotDrawSize = Math.round(frameData.getSize());
-        Color c = colorBasedOnDistance(frameData);
+        Color c = Colors.colorBasedOnDistance(frameData);
         if (c == null) {
             return;
         }
@@ -56,7 +54,7 @@ public class Renderer {
         //TODO http://stackoverflow.com/questions/27706197/how-can-i-center-graphics-drawstring-in-java
 
         int fontSize = Math.round(frameData.getSize());
-        Color c = colorBasedOnDistance(frameData);
+        Color c = Colors.colorBasedOnDistance(frameData);
         if (c == null) {
             return;
         }
@@ -66,43 +64,6 @@ public class Renderer {
         graphics.setFont(FontCache.get(fontSize));
         graphics.drawString(frameData.getText(), Math.round(pixel.x), Math.round(pixel.y));
         //TODO REMOVE DUPLICATE CODE !!! same as above but drawString instead of fillOval
-    }
-
-    /**
-     * @return null if too far away and should not be drawn.
-     */
-    @Nullable
-    private static Color colorBasedOnDistance(FrameData frameData) {
-        float zDistance = frameData.getZDistanceFromCamera();
-        Color oldColor = frameData.getColor();
-
-        float fogFactor = fogFactor(zDistance);
-
-        if (fogFactor <= 0f) {
-            return oldColor;
-        } else if (fogFactor >= 1f) {
-            return null;
-        }
-
-        float red = oldColor.getRed() + fogFactor * (Settings.BACKGROUND_COLOR.getRed() - oldColor.getRed());
-        float green = oldColor.getGreen() + fogFactor * (Settings.BACKGROUND_COLOR.getGreen() - oldColor.getGreen());
-        float blue = oldColor.getBlue() + fogFactor * (Settings.BACKGROUND_COLOR.getBlue() - oldColor.getBlue());
-
-        return new Color(
-                (int) red,
-                (int) green,
-                (int) blue
-        );
-    }
-
-    private static float fogFactor(float zDistance) {
-        if (zDistance < Settings.FOG_START_DISTANCE) {
-            return 0f;
-        } else if (zDistance > Settings.MAX_DISTANCE_TO_RENDER) {
-            return 1f;
-        }
-        return (zDistance - Settings.FOG_START_DISTANCE) /
-                (Settings.MAX_DISTANCE_TO_RENDER - Settings.FOG_START_DISTANCE);
     }
 
     private Float2 relativeToAbsolutePixels(Float2 relativeLocation) {
