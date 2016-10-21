@@ -5,7 +5,7 @@ Primitive 3D graphics.
 
 * Shape: Collection of PrimitiveShape.
 * PrimitiveShape: A fundamental 3D-shape, dot or line.
-* Drawable: Represents how a PrimitiveShape (3D) should be drawn on a 2D surface (your monitor).
+* FrameData: Represents how a PrimitiveShape (3D) should be drawn on a 2D surface (your monitor).
 * Renderable: Something which can be rendered by a Renderer...
 
 The most intersting part, translates a 3D position to 2D based on camera position:

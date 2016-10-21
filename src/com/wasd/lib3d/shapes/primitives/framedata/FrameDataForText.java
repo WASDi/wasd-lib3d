@@ -1,18 +1,18 @@
-package com.wasd.lib3d.shapes.primitives.drawable;
+package com.wasd.lib3d.shapes.primitives.framedata;
 
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.model.Float2;
 
 import java.awt.Color;
 
-public class DrawableText extends Drawable {
+public class FrameDataForText extends FrameData {
 
     private final String text;
     private Float2 locationOnScreen;
     private float size;
     private Color color = Color.WHITE;
 
-    public DrawableText(String text) {
+    public FrameDataForText(String text) {
         this.text = text;
     }
 

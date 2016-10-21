@@ -3,7 +3,7 @@ package com.wasd.lib3d.shapes;
 import com.wasd.lib3d.shapes.primitives.Dot;
 import com.wasd.lib3d.shapes.primitives.Line;
 
-public class Box extends Shape {
+public class Box extends BasicShape {
 
     public Box(float x, float y, float z, float size) {
         super(8, 12);

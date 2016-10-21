@@ -1,8 +1,8 @@
-package com.wasd.lib3d.shapes.primitives.drawable;
+package com.wasd.lib3d.shapes.primitives.framedata;
 
 import java.awt.Color;
 
-public abstract class Drawable {
+public abstract class FrameData {
 
     private float zDistanceFromCamera;
 

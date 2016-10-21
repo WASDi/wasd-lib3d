@@ -4,10 +4,10 @@ import com.sun.istack.internal.Nullable;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.misc.FontCache;
 import com.wasd.lib3d.model.Float2;
-import com.wasd.lib3d.shapes.primitives.drawable.Drawable;
-import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
-import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
-import com.wasd.lib3d.shapes.primitives.drawable.DrawableText;
+import com.wasd.lib3d.shapes.primitives.framedata.FrameData;
+import com.wasd.lib3d.shapes.primitives.framedata.FrameDataForDot;
+import com.wasd.lib3d.shapes.primitives.framedata.FrameDataForLine;
+import com.wasd.lib3d.shapes.primitives.framedata.FrameDataForText;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -24,47 +24,47 @@ public class Renderer {
         centerY = height / 2;
     }
 
-    public void renderLine(DrawableLine drawableLine) {
-        Color c = colorBasedOnDistance(drawableLine);
+    public void renderLine(FrameDataForLine frameData) {
+        Color c = colorBasedOnDistance(frameData);
         if (c == null) {
             return;
         }
 
-        Float2 pixel1 = relativeToAbsolutePixels(drawableLine.getStartLocationOnScreen());
-        Float2 pixel2 = relativeToAbsolutePixels(drawableLine.getEndLocationOnScreen());
+        Float2 pixel1 = relativeToAbsolutePixels(frameData.getStartLocationOnScreen());
+        Float2 pixel2 = relativeToAbsolutePixels(frameData.getEndLocationOnScreen());
 
         graphics.setColor(c);
         graphics.drawLine(Math.round(pixel1.x), Math.round(pixel1.y),
                 Math.round(pixel2.x), Math.round(pixel2.y));
     }
 
-    public void renderDot(DrawableDot drawableDot) {
-        int dotDrawSize = Math.round(drawableDot.getSize());
-        Color c = colorBasedOnDistance(drawableDot);
+    public void renderDot(FrameDataForDot frameData) {
+        int dotDrawSize = Math.round(frameData.getSize());
+        Color c = colorBasedOnDistance(frameData);
         if (c == null) {
             return;
         }
 
-        Float2 pixel = relativeToAbsolutePixels(drawableDot.getLocationOnScreen());
+        Float2 pixel = relativeToAbsolutePixels(frameData.getLocationOnScreen());
 
         graphics.setColor(c);
         graphics.fillOval(Math.round(pixel.x - dotDrawSize / 2f), Math.round(pixel.y - dotDrawSize / 2f),
                 dotDrawSize, dotDrawSize);
     }
 
-    public void renderText(DrawableText drawableText) {
+    public void renderText(FrameDataForText frameData) {
         //TODO http://stackoverflow.com/questions/27706197/how-can-i-center-graphics-drawstring-in-java
 
-        int fontSize = Math.round(drawableText.getSize());
-        Color c = colorBasedOnDistance(drawableText);
+        int fontSize = Math.round(frameData.getSize());
+        Color c = colorBasedOnDistance(frameData);
         if (c == null) {
             return;
         }
-        Float2 pixel = relativeToAbsolutePixels(drawableText.getLocationOnScreen());
+        Float2 pixel = relativeToAbsolutePixels(frameData.getLocationOnScreen());
 
         graphics.setColor(c);
         graphics.setFont(FontCache.get(fontSize));
-        graphics.drawString(drawableText.getText(), Math.round(pixel.x), Math.round(pixel.y));
+        graphics.drawString(frameData.getText(), Math.round(pixel.x), Math.round(pixel.y));
         //TODO REMOVE DUPLICATE CODE !!! same as above but drawString instead of fillOval
     }
 
@@ -72,9 +72,9 @@ public class Renderer {
      * @return null if too far away and should not be drawn.
      */
     @Nullable
-    private static Color colorBasedOnDistance(Drawable drawable) {
-        float zDistance = drawable.getZDistanceFromCamera();
-        Color oldColor = drawable.getColor();
+    private static Color colorBasedOnDistance(FrameData frameData) {
+        float zDistance = frameData.getZDistanceFromCamera();
+        Color oldColor = frameData.getColor();
 
         float fogFactor = fogFactor(zDistance);
 

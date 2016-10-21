@@ -2,11 +2,11 @@ package com.wasd.lib3d.shapes.primitives;
 
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.rendering.Renderer;
-import com.wasd.lib3d.shapes.primitives.drawable.DrawableLine;
+import com.wasd.lib3d.shapes.primitives.framedata.FrameDataForLine;
 
-public class Line implements PrimitiveShape<DrawableLine> {
+public class Line implements PrimitiveShape<FrameDataForLine> {
 
-    private DrawableLine drawable = new DrawableLine();
+    private FrameDataForLine frameData = new FrameDataForLine();
 
     private final Dot fromDot;
     private final Dot toDot;
@@ -18,25 +18,25 @@ public class Line implements PrimitiveShape<DrawableLine> {
 
     @Override
     public void update(Camera camera) {
-        drawable.setStartLocationOnScreen(fromDot.getDrawable().getLocationOnScreen());
-        drawable.setEndLocationOnScreen(toDot.getDrawable().getLocationOnScreen());
+        frameData.setStartLocationOnScreen(fromDot.getFrameData().getLocationOnScreen());
+        frameData.setEndLocationOnScreen(toDot.getFrameData().getLocationOnScreen());
 
-        if (!drawable.shouldRender()) {
+        if (!frameData.shouldRender()) {
             return;
         }
 
-        drawable.setZDistanceFromCamera((fromDot.getPos().z + toDot.getPos().z) / 2f - camera.getZ());
+        frameData.setZDistanceFromCamera((fromDot.getPos().z + toDot.getPos().z) / 2f - camera.getZ());
     }
 
     @Override
     public void render(Renderer renderer) {
-        if (drawable.shouldRender()) {
-            renderer.renderLine(drawable);
+        if (frameData.shouldRender()) {
+            renderer.renderLine(frameData);
         }
     }
 
     @Override
-    public DrawableLine getDrawable() {
-        return drawable;
+    public FrameDataForLine getFrameData() {
+        return frameData;
     }
 }

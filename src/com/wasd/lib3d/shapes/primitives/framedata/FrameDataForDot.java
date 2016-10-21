@@ -1,11 +1,11 @@
-package com.wasd.lib3d.shapes.primitives.drawable;
+package com.wasd.lib3d.shapes.primitives.framedata;
 
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.model.Float2;
 
 import java.awt.Color;
 
-public class DrawableDot extends Drawable {
+public class FrameDataForDot extends FrameData {
 
     private Float2 locationOnScreen;
     private float size;

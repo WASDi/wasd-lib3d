@@ -13,7 +13,7 @@ import java.awt.Color;
 public class Main {
 
     public static void main(String[] args) {
-        //MAYBE TODO : port to OpenCL ! Calculations are easy, but what about rendering? One thread per drawable?
+        //MAYBE TODO : port to OpenCL ! Calculations are easy, but what about rendering? One thread per framedata?
 
         World world = new World();
 

@@ -1,10 +1,10 @@
-package com.wasd.lib3d.shapes.primitives.drawable;
+package com.wasd.lib3d.shapes.primitives.framedata;
 
 import com.wasd.lib3d.model.Float2;
 
 import java.awt.Color;
 
-public class DrawableLine extends Drawable {
+public class FrameDataForLine extends FrameData {
 
     private Float2 startLocationOnScreen;
     private Float2 endLocationOnScreen;

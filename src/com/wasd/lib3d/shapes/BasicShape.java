@@ -9,13 +9,13 @@ import com.wasd.lib3d.shapes.primitives.Line;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public abstract class Shape implements RenderGroup {
+public abstract class BasicShape implements RenderGroup {
 
     //TODO array instead of List? As exact size is known
     protected final ArrayList<Dot> dots;
     protected final ArrayList<Line> lines;
 
-    public Shape(int numDots, int numLines) {
+    public BasicShape(int numDots, int numLines) {
         dots = new ArrayList<>(numDots);
         lines = new ArrayList<>(numLines);
     }
@@ -26,13 +26,13 @@ public abstract class Shape implements RenderGroup {
         lines.forEach(line -> line.update(camera));
     }
 
-    public Shape withDotColor(Color color) {
-        dots.forEach(dot -> dot.getDrawable().setColor(color));
+    public BasicShape withDotColor(Color color) {
+        dots.forEach(dot -> dot.getFrameData().setColor(color));
         return this;
     }
 
-    public Shape withLineColor(Color color) {
-        lines.forEach(line -> line.getDrawable().setColor(color));
+    public BasicShape withLineColor(Color color) {
+        lines.forEach(line -> line.getFrameData().setColor(color));
         return this;
     }
 

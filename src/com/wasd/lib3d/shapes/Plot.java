@@ -5,7 +5,7 @@ import com.wasd.lib3d.shapes.primitives.Line;
 
 import java.util.function.BiFunction;
 
-public class Plot extends Shape {
+public class Plot extends BasicShape {
 
     public static final int RESOLUTION = 30;
     public static final float RANGE = 2f;

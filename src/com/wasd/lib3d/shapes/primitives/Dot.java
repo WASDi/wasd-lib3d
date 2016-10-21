@@ -5,15 +5,15 @@ import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
 import com.wasd.lib3d.rendering.Renderer;
-import com.wasd.lib3d.shapes.primitives.drawable.DrawableDot;
+import com.wasd.lib3d.shapes.primitives.framedata.FrameDataForDot;
 
-public class Dot implements PrimitiveShape<DrawableDot> {
+public class Dot implements PrimitiveShape<FrameDataForDot> {
 
     private static final float DOT_SIZE_FACTOR = 3f;
 
     private final Float3 pos;
 
-    private final DrawableDot drawable = new DrawableDot();
+    private final FrameDataForDot frameData = new FrameDataForDot();
 
     public Dot(float x, float y, float z) {
         pos = new Float3(x, y, z);
@@ -27,25 +27,25 @@ public class Dot implements PrimitiveShape<DrawableDot> {
     public void update(Camera camera) {
         Float2 locationOnScreen = Settings.PROJECTION.locationOnScreen(camera, pos);
 
-        drawable.setLocationOnScreen(locationOnScreen);
+        frameData.setLocationOnScreen(locationOnScreen);
         if (locationOnScreen == null) {
             return;
         }
 
-        drawable.setZDistanceFromCamera(pos.z - camera.getZ());
-        drawable.setSize(DOT_SIZE_FACTOR / drawable.getZDistanceFromCamera());
+        frameData.setZDistanceFromCamera(pos.z - camera.getZ());
+        frameData.setSize(DOT_SIZE_FACTOR / frameData.getZDistanceFromCamera());
     }
 
     @Override
     public void render(Renderer renderer) {
-        if (drawable.shouldRender()) {
-            renderer.renderDot(drawable);
+        if (frameData.shouldRender()) {
+            renderer.renderDot(frameData);
         }
     }
 
     @Override
-    public DrawableDot getDrawable() {
-        return drawable;
+    public FrameDataForDot getFrameData() {
+        return frameData;
     }
 
 }

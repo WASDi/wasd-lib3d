@@ -8,17 +8,17 @@ import java.util.List;
 
 public class World {
 
-    private final List<RenderGroup> renderableObjects = new ArrayList<>();
+    private final List<RenderGroup> objects = new ArrayList<>();
 
     public void add(RenderGroup object) {
-        renderableObjects.add(object);
+        objects.add(object);
     }
 
     public void render(Renderer renderer, Camera camera) {
-        renderableObjects.forEach(object -> object.update(camera));
-        renderableObjects.forEach(object -> object.renderLineLayer(renderer));
-        renderableObjects.forEach(object -> object.renderDotLayer(renderer));
-        renderableObjects.forEach(object -> object.renderTextLayer(renderer));
+        objects.forEach(object -> object.update(camera));
+        objects.forEach(object -> object.renderLineLayer(renderer));
+        objects.forEach(object -> object.renderDotLayer(renderer));
+        objects.forEach(object -> object.renderTextLayer(renderer));
     }
 
 }
