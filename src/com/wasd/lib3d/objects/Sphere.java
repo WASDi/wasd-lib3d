@@ -3,7 +3,7 @@ package com.wasd.lib3d.objects;
 import com.wasd.lib3d.objects.primitives.Dot;
 import com.wasd.lib3d.objects.primitives.Line;
 
-public class Sphere extends BasicShape {
+public class Sphere extends AbstractShape {
 
     private static final int RESOLUTION_X = 20;
     private static final int RESOLUTION_Y = 18;

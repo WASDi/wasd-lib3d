@@ -8,13 +8,13 @@ import com.wasd.lib3d.rendering.Renderer;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public abstract class BasicShape implements Object3D {
+public abstract class AbstractShape implements Object3D {
 
     //TODO array instead of List? As exact size is known
     protected final ArrayList<Dot> dots;
     protected final ArrayList<Line> lines;
 
-    public BasicShape(int numDots, int numLines) {
+    public AbstractShape(int numDots, int numLines) {
         dots = new ArrayList<>(numDots);
         lines = new ArrayList<>(numLines);
     }
@@ -25,12 +25,12 @@ public abstract class BasicShape implements Object3D {
         lines.forEach(line -> line.update(camera));
     }
 
-    public BasicShape withDotColor(Color color) {
+    public AbstractShape withDotColor(Color color) {
         dots.forEach(dot -> dot.getFrameData().setColor(color));
         return this;
     }
 
-    public BasicShape withLineColor(Color color) {
+    public AbstractShape withLineColor(Color color) {
         lines.forEach(line -> line.getFrameData().setColor(color));
         return this;
     }
