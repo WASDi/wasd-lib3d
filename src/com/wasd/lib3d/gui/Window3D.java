@@ -1,6 +1,6 @@
 package com.wasd.lib3d.gui;
 
-import com.wasd.lib3d.MouseForUpdatingCamera;
+import com.wasd.lib3d.MouseForCamera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
 
@@ -10,7 +10,7 @@ import java.awt.HeadlessException;
 public class Window3D extends JFrame {
 
     private final Panel3D panel3D;
-    private final MouseForUpdatingCamera mouseForUpdatingCamera;
+    private final MouseForCamera mouseForCamera;
 
     public Window3D(World world) throws HeadlessException {
         super("WASD 3D Window");
@@ -19,8 +19,8 @@ public class Window3D extends JFrame {
         add(panel3D);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        mouseForUpdatingCamera = new MouseForUpdatingCamera(panel3D);
-        panel3D.addFullMouseListener(mouseForUpdatingCamera);
+        mouseForCamera = new MouseForCamera(panel3D);
+        panel3D.addFullMouseListener(mouseForCamera);
     }
 
     public void makeVisible() {

@@ -9,7 +9,6 @@ public class WeakPerspective implements Projection {
 
     private static final float MIN_Z_DISTANCE_FROM_CAMERA = .01f;
 
-    private static final boolean ROTATION_DISABLED = true;
 
     @Override
     public Float2 locationOnScreen(Camera camera, Float3 pos) {
@@ -26,35 +25,32 @@ public class WeakPerspective implements Projection {
     }
 
     private Float3 delta(Camera camera, Float3 pos) {
-        Float3 relativePos = new Float3(pos.x - camera.getX(), pos.y - camera.getY(), pos.z - camera.getZ());
-        if (ROTATION_DISABLED) {
-            return relativePos;
-        }
-        Float3 deltaAfterYRotation = deltaAfterYRotation(camera.getRotation().y, relativePos);
+        Float3 delta = new Float3(pos.x - camera.getX(), pos.y - camera.getY(), pos.z - camera.getZ());
+        Float3 deltaAfterYRotation = deltaAfterYRotation(camera.getRotation().y, delta);
         return deltaAfterXRotation(camera.getRotation().x, deltaAfterYRotation);
     }
 
-    private Float3 deltaAfterYRotation(float cameraRotation, Float3 relativePos) {
-        Float2 xzPlane = new Float2(relativePos.x, relativePos.z);
+    private Float3 deltaAfterYRotation(float cameraRotation, Float3 delta) {
+        Float2 xzPlane = new Float2(delta.x, delta.z);
         float xzDistance = xzPlane.length();
 
-        float angleRelativeToCamera = Maths.atan(relativePos.x / relativePos.z);
+        float angleRelativeToCamera = Maths.atan(delta.x / delta.z);
         float v = angleRelativeToCamera - cameraRotation;
         float dx = Maths.sin(v) * xzDistance;
         float dz = Maths.cos(v) * xzDistance;
 
-        return new Float3(dx, relativePos.y, dz);
+        return new Float3(dx, delta.y, dz);
     }
 
-    private Float3 deltaAfterXRotation(float cameraRotation, Float3 relativePos) {
-        Float2 yzPlane = new Float2(relativePos.y, relativePos.z);
+    private Float3 deltaAfterXRotation(float cameraRotation, Float3 delta) {
+        Float2 yzPlane = new Float2(delta.y, delta.z);
         float yzDistance = yzPlane.length();
 
-        float angleRelativeToCamera = Maths.atan(relativePos.y / relativePos.z);
+        float angleRelativeToCamera = Maths.atan(delta.y / delta.z);
         float v = angleRelativeToCamera - cameraRotation;
         float dy = Maths.sin(v) * yzDistance;
         float dz = Maths.cos(v) * yzDistance;
 
-        return new Float3(relativePos.x, dy, dz);
+        return new Float3(delta.x, dy, dz);
     }
 }

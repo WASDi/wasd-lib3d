@@ -6,21 +6,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
-public class MouseForUpdatingCamera extends MouseAdapter {
+public class MouseForCamera extends MouseAdapter {
 
     private static final float SCROLL_FACTOR = .015f;
+
+    private static final int LEFT_CLICK = 1;
+    private static final int RIGHT_CLICK = 3;
 
     private final Panel3D cameraPanel;
 
     private int lastPosX = 0;
     private int lastPosY = 0;
 
-    public MouseForUpdatingCamera(Panel3D panelContainingCamera) {
+    public MouseForCamera(Panel3D panelContainingCamera) {
         this.cameraPanel = panelContainingCamera;
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        //TODO separate movement and rotation
         lastPosX = e.getX();
         lastPosY = e.getY();
     }
