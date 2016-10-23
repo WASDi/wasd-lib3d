@@ -20,4 +20,8 @@ public class Maths {
     public static float cos(double x) {
         return (float) Math.cos(x);
     }
+
+    public static float atan(float x) {
+        return (float) Math.atan(x);
+    }
 }
