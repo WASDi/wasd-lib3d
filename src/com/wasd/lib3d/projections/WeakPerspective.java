@@ -6,18 +6,26 @@ import com.wasd.lib3d.model.Float3;
 
 public class WeakPerspective implements Projection {
 
-    private static final float MIN_DISTANCE_FROM_CAMERA = .01f;
+    private static final float MIN_Z_DISTANCE_FROM_CAMERA = .01f;
 
     @Override
     public Float2 locationOnScreen(Camera camera, Float3 pos) {
-        if (pos.z < (camera.getZ() + MIN_DISTANCE_FROM_CAMERA)) {
+        Float3 delta = delta(camera, pos);
+        if (delta.z < MIN_Z_DISTANCE_FROM_CAMERA) {
             return null;
         }
-        float factor = 1 / (pos.z - camera.getZ());
+        float factor = 1 / (delta.z);
 
-        float x = factor * (pos.x - camera.getX());
-        float y = factor * (pos.y - camera.getY());
+        float x = factor * (delta.x);
+        float y = factor * (delta.y);
 
         return new Float2(x, y);
+    }
+
+    private Float3 delta(Camera camera, Float3 pos) {
+        //TODO camera rotation
+        return new Float3(pos.x - camera.getX(),
+                pos.y - camera.getY(),
+                pos.z - camera.getZ());
     }
 }
