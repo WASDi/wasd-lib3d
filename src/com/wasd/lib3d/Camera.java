@@ -1,5 +1,6 @@
 package com.wasd.lib3d;
 
+import com.wasd.lib3d.misc.Maths;
 import com.wasd.lib3d.model.Float3;
 
 public class Camera {
@@ -42,7 +43,7 @@ public class Camera {
         float dx = point.x - x;
         float dy = point.y - y;
         float dz = point.z - z;
-        return (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
+        return Maths.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
 }

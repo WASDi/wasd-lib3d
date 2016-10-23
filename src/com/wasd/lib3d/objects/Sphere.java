@@ -1,5 +1,6 @@
 package com.wasd.lib3d.objects;
 
+import com.wasd.lib3d.misc.Maths;
 import com.wasd.lib3d.objects.atoms.Dot;
 import com.wasd.lib3d.objects.atoms.Line;
 
@@ -8,8 +9,6 @@ public class Sphere extends AbstractShape {
     private static final int RESOLUTION_X = 20;
     private static final int RESOLUTION_Y = 18;
 
-    private static final float PI = (float) Math.PI;
-    private static final float TWO_PI = (float) Math.PI * 2f;
 
     public Sphere(float x, float y, float z, float size) {
         super(2 + RESOLUTION_X * RESOLUTION_Y,
@@ -27,12 +26,12 @@ public class Sphere extends AbstractShape {
         dots.add(bottomDot);
 
         for (int ring = 0; ring < RESOLUTION_Y; ring++) {
-            float ringLinearIndexTimesPi = PI * (ring + 1f) / (RESOLUTION_Y + 1);
-            float ringY = y - halfSize * (float) Math.cos(ringLinearIndexTimesPi);
-            float ringRadius = (float) Math.sin(ringLinearIndexTimesPi);
+            float ringLinearIndexTimesPi = Maths.PI * (ring + 1f) / (RESOLUTION_Y + 1);
+            float ringY = y - halfSize * Maths.cos(ringLinearIndexTimesPi);
+            float ringRadius = Maths.sin(ringLinearIndexTimesPi);
             for (int pointInRing = 0; pointInRing < RESOLUTION_X; pointInRing++) {
-                float dotX = x + ringRadius * halfSize * (float) Math.cos(TWO_PI * pointInRing / RESOLUTION_X);
-                float dotZ = z + ringRadius * halfSize * (float) Math.sin(TWO_PI * pointInRing / RESOLUTION_X);
+                float dotX = x + ringRadius * halfSize * Maths.cos(Maths.TWO_PI * pointInRing / RESOLUTION_X);
+                float dotZ = z + ringRadius * halfSize * Maths.sin(Maths.TWO_PI * pointInRing / RESOLUTION_X);
                 Dot dotInRing = new Dot(dotX, ringY, dotZ);
                 dots.add(dotInRing);
             }

@@ -1,5 +1,7 @@
 package com.wasd.lib3d.model;
 
+import com.wasd.lib3d.misc.Maths;
+
 public class Float3 {
 
     public final float x;
@@ -16,7 +18,7 @@ public class Float3 {
         float dx = other.x - x;
         float dy = other.y - y;
         float dz = other.z - z;
-        return (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
+        return Maths.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
 }

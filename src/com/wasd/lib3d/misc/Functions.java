@@ -8,7 +8,7 @@ public class Functions {
 
     public static final BiFunction<Float, Float, Float> gaussian = (x, z) -> {
         double d = Math.sqrt(x * x + z * z);
-        return (float) Math.exp(-d * d);
+        return Maths.exp(-d * d);
     };
 
 }
