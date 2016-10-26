@@ -53,7 +53,7 @@ public class WeakPerspective implements Projection {
         return new Float3(delta.x, dy, dz);
     }
 
-    private float angleRelativeToCamera(Float deltaAxis, float deltaZ) {
+    private float angleRelativeToCamera(float deltaAxis, float deltaZ) {
         float angleRelativeToCamera = Maths.atan(deltaAxis / deltaZ);
         if (deltaZ < 0) {
             if (deltaAxis > 0) {

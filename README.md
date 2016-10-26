@@ -10,8 +10,8 @@ Primitive 3D graphics.
 
 The most interesting part, translates a 3D position to 2D based on camera position:
 
-    float factor = 1 / (pos.z - camera.getZ());
-    float x = factor * (pos.x - camera.getX());
-    float y = factor * (pos.y - camera.getY());
+    float factor = 1 / (delta.z);
+    float x = factor * (delta.x);
+    float y = factor * (delta.y);
 
-Currently found in Projection.java. Used in renderDot() in Renderer.java for final translation to destination pixel. I made it up myself but apparently it is known as [Weak perspective projection](https://en.wikipedia.org/wiki/3D_projection#Weak_perspective_projection).
+Currently found in WeakPerspective.java. Used in renderDot() in Renderer.java for final translation to destination pixel. I made it up myself but apparently it is known as [Weak perspective projection](https://en.wikipedia.org/wiki/3D_projection#Weak_perspective_projection) so I named the class like that.
