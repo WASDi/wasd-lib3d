@@ -33,7 +33,7 @@ public class WeakPerspective implements Projection {
         Float2 xzPlane = new Float2(delta.x, delta.z);
         float xzDistance = xzPlane.length();
 
-        float angleRelativeToCamera = Maths.atan(delta.x / delta.z);
+        float angleRelativeToCamera = angleRelativeToCamera(delta.x, delta.z);
         float v = angleRelativeToCamera - cameraRotation;
         float dx = Maths.sin(v) * xzDistance;
         float dz = Maths.cos(v) * xzDistance;
@@ -45,11 +45,23 @@ public class WeakPerspective implements Projection {
         Float2 yzPlane = new Float2(delta.y, delta.z);
         float yzDistance = yzPlane.length();
 
-        float angleRelativeToCamera = Maths.atan(delta.y / delta.z);
+        float angleRelativeToCamera = angleRelativeToCamera(delta.y, delta.z);
         float v = angleRelativeToCamera - cameraRotation;
         float dy = Maths.sin(v) * yzDistance;
         float dz = Maths.cos(v) * yzDistance;
 
         return new Float3(delta.x, dy, dz);
+    }
+
+    private float angleRelativeToCamera(Float deltaAxis, float deltaZ) {
+        float angleRelativeToCamera = Maths.atan(deltaAxis / deltaZ);
+        if (deltaZ < 0) {
+            if (deltaAxis > 0) {
+                angleRelativeToCamera += Maths.PI;
+            } else {
+                angleRelativeToCamera -= Maths.PI;
+            }
+        }
+        return angleRelativeToCamera;
     }
 }

@@ -33,6 +33,7 @@ public class Main {
         world.add(new Box(0, -1f, 2f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
         world.add(new Box(0, -1f, 3f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
 
+        world.add(new Text(0f, 0f, .5f, "DEBUG"));
 
         Window3D wasdWindow = new Window3D(world);
 

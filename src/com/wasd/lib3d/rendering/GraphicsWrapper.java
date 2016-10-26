@@ -18,6 +18,7 @@ public class GraphicsWrapper {
         graphics.setColor(color);
         graphics.drawLine(Math.round(fromPixel.x), Math.round(fromPixel.y),
                 Math.round(toPixel.x), Math.round(toPixel.y));
+//        graphics.drawLine(-6079, 2123, 162280, -42243); //[TEST] interesting odd bug, causes freeze
     }
 
     public void drawDot(Color color, float size, Float2 pixelLocation) {

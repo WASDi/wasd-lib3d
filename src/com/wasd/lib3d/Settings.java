@@ -18,5 +18,5 @@ public class Settings {
     public static final float FOG_START_DISTANCE = .5f;
     public static final float MAX_DISTANCE_TO_RENDER = 4f;
 
-    public static final int FONT_CACHE_SIZE = 100;
+    public static final int FONT_CACHE_SIZE = 1000;
 }
