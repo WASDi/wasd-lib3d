@@ -21,4 +21,10 @@ public class Float3 {
         return Maths.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
+
+    @Override
+    public String toString() {
+        return String.format("(%.2f, %.2f, %.2f)", x, y, z);
+    }
+
 }

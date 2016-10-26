@@ -49,8 +49,8 @@ public class Renderer {
     }
 
     private Float2 relativeToAbsolutePixels(Float2 relativeLocation) {
-        float pixelX = centerX + relativeLocation.x * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
-        float pixelY = centerY + relativeLocation.y * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_FACTOR;
+        float pixelX = centerX + relativeLocation.x * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
+        float pixelY = centerY + relativeLocation.y * Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
         return new Float2(pixelX, pixelY);
     }
 }

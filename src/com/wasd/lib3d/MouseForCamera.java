@@ -10,13 +10,14 @@ public class MouseForCamera extends MouseAdapter {
 
     private static final float SCROLL_FACTOR = .015f;
 
-    private static final int LEFT_CLICK = 1;
-    private static final int RIGHT_CLICK = 3;
+    public static final int LEFT_CLICK = 1;
+    public static final int RIGHT_CLICK = 3;
 
     private final Panel3D cameraPanel;
 
     private int lastPosX = 0;
     private int lastPosY = 0;
+    private int mode = 0;
 
     public MouseForCamera(Panel3D panelContainingCamera) {
         this.cameraPanel = panelContainingCamera;
@@ -24,9 +25,14 @@ public class MouseForCamera extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        //TODO separate movement and rotation
+        mode = e.getButton();
         lastPosX = e.getX();
         lastPosY = e.getY();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        mode = 0;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class MouseForCamera extends MouseAdapter {
     }
 
     private void relativeDrag(int dx, int dy) {
-        cameraPanel.onMouseDrag(dx, dy);
+        cameraPanel.onMouseDrag(dx, dy, mode);
     }
 
     @Override

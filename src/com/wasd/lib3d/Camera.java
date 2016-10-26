@@ -6,9 +6,15 @@ import com.wasd.lib3d.model.Float3;
 
 public class Camera {
 
+    private static final float MIN_ROT_X = -Maths.HALF_PI + .01f;
+    private static final float MAX_ROT_X = Maths.HALF_PI - .01f;
+
     private float x;
     private float y;
     private float z;
+
+    private float rotX;
+    private float rotZ;
 
     public Camera() {
         this(0f, 0f);
@@ -22,6 +28,13 @@ public class Camera {
     public void relativeXYMovement(float dx, float dy) {
         x += dx;
         y += dy;
+    }
+
+    public void relativeRotation(float dx, float dy) {
+        rotX += dx;
+        rotZ += dy;
+        rotX = Maths.clamp(rotX, MIN_ROT_X, MAX_ROT_X);
+        System.out.println(getRotation());
     }
 
     public void relativeZMovement(float dz) {
@@ -48,6 +61,6 @@ public class Camera {
     }
 
     public Float2 getRotation() {
-        return new Float2(0, 0);
+        return new Float2(rotX, rotZ);
     }
 }

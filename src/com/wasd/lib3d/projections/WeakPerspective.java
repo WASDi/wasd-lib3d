@@ -9,7 +9,6 @@ public class WeakPerspective implements Projection {
 
     private static final float MIN_Z_DISTANCE_FROM_CAMERA = .01f;
 
-
     @Override
     public Float2 locationOnScreen(Camera camera, Float3 pos) {
         Float3 delta = delta(camera, pos);

@@ -21,4 +21,9 @@ public class Float2 {
     public float length() {
         return Maths.sqrt(x * x + y * y);
     }
+
+    @Override
+    public String toString() {
+        return String.format("(%.2f, %.2f)", x, y);
+    }
 }
