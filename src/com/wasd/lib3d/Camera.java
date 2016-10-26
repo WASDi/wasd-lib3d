@@ -34,7 +34,6 @@ public class Camera {
         rotX += dx;
         rotZ += dy;
         rotX = Maths.clamp(rotX, MIN_ROT_X, MAX_ROT_X);
-        System.out.println(getRotation());
     }
 
     public void relativeZMovement(float dz) {

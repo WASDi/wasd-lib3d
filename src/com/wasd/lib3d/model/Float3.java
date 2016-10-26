@@ -27,4 +27,7 @@ public class Float3 {
         return String.format("(%.2f, %.2f, %.2f)", x, y, z);
     }
 
+    public Float2 getXY() {
+        return new Float2(x, y);
+    }
 }

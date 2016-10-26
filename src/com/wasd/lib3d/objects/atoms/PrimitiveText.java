@@ -2,7 +2,6 @@ package com.wasd.lib3d.objects.atoms;
 
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
-import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
 import com.wasd.lib3d.objects.atoms.framedata.FrameDataForText;
 import com.wasd.lib3d.rendering.Renderer;
@@ -22,14 +21,14 @@ public class PrimitiveText implements Atom<FrameDataForText> {
 
     @Override
     public void update(Camera camera) {
-        Float2 locationOnScreen = Settings.PROJECTION.locationOnScreen(camera, pos);
-        frameData.setLocationOnScreen(locationOnScreen);
-
-        if (locationOnScreen == null) {
+        Float3 projection = Settings.PROJECTION.xyLocationOnScreenAndZDistanceFromCamera(camera, pos);
+        if (projection == null) {
+            frameData.setLocationOnScreen(null);
             return;
         }
 
-        frameData.setZDistanceFromCamera(pos.z - camera.getZ());
+        frameData.setLocationOnScreen(projection.getXY());
+        frameData.setZDistanceFromCamera(projection.z);
         frameData.setFontSize(TEXT_SIZE_FACTOR / frameData.getZDistanceFromCamera());
     }
 
