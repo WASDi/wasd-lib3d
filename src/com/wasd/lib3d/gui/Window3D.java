@@ -1,5 +1,6 @@
 package com.wasd.lib3d.gui;
 
+import com.wasd.lib3d.Keyboard;
 import com.wasd.lib3d.MouseForCamera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
@@ -21,6 +22,8 @@ public class Window3D extends JFrame {
 
         mouseForCamera = new MouseForCamera(panel3D);
         panel3D.addFullMouseListener(mouseForCamera);
+
+        addKeyListener(new Keyboard());
     }
 
     public void makeVisible() {
