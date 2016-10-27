@@ -1,4 +1,4 @@
-package com.wasd.lib3d;
+package com.wasd.lib3d.input;
 
 import com.wasd.lib3d.gui.Panel3D;
 
@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
-public class MouseForCamera extends MouseAdapter {
+public class Mouse extends MouseAdapter {
 
     private static final float SCROLL_FACTOR = .015f;
 
@@ -19,7 +19,7 @@ public class MouseForCamera extends MouseAdapter {
     private int lastPosY = 0;
     private int mode = 0;
 
-    public MouseForCamera(Panel3D panelContainingCamera) {
+    public Mouse(Panel3D panelContainingCamera) {
         this.cameraPanel = panelContainingCamera;
     }
 

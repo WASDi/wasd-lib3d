@@ -1,9 +1,9 @@
 package com.wasd.lib3d.gui;
 
-import com.wasd.lib3d.Keyboard;
-import com.wasd.lib3d.MouseForCamera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
+import com.wasd.lib3d.input.Keyboard;
+import com.wasd.lib3d.input.Mouse;
 
 import javax.swing.JFrame;
 import java.awt.HeadlessException;
@@ -11,7 +11,7 @@ import java.awt.HeadlessException;
 public class Window3D extends JFrame {
 
     private final Panel3D panel3D;
-    private final MouseForCamera mouseForCamera;
+    private final Mouse mouse;
 
     public Window3D(World world) throws HeadlessException {
         super("WASD 3D Window");
@@ -20,8 +20,8 @@ public class Window3D extends JFrame {
         add(panel3D);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        mouseForCamera = new MouseForCamera(panel3D);
-        panel3D.addFullMouseListener(mouseForCamera);
+        mouse = new Mouse(panel3D);
+        panel3D.addFullMouseListener(mouse);
 
         addKeyListener(new Keyboard());
     }

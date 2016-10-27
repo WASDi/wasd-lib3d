@@ -1,4 +1,4 @@
-package com.wasd.lib3d;
+package com.wasd.lib3d.input;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -16,5 +16,7 @@ public class Keyboard extends KeyAdapter {
             case 'S':
             case 'D':
         }
+        //Or use KeyBindings?
+        //http://stackoverflow.com/questions/22741215/how-to-use-key-bindings-instead-of-key-listeners
     }
 }

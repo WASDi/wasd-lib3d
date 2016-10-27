@@ -1,9 +1,9 @@
 package com.wasd.lib3d.gui;
 
 import com.wasd.lib3d.Camera;
-import com.wasd.lib3d.MouseForCamera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
+import com.wasd.lib3d.input.Mouse;
 import com.wasd.lib3d.rendering.GraphicsWrapper;
 import com.wasd.lib3d.rendering.Renderer;
 
@@ -41,10 +41,11 @@ public class Panel3D extends JPanel {
         float dx = -dx_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
         float dy = -dy_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
         switch (mode) {
-            case MouseForCamera.LEFT_CLICK:
+            //TODO refactor
+            case Mouse.LEFT_CLICK:
                 camera.relativeXYMovement(dx, dy);
                 break;
-            case MouseForCamera.RIGHT_CLICK:
+            case Mouse.RIGHT_CLICK:
                 camera.relativeRotation(dy, dx);
                 break;
             default:
