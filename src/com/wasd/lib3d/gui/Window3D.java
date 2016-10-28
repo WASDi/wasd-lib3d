@@ -2,8 +2,8 @@ package com.wasd.lib3d.gui;
 
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
-import com.wasd.lib3d.input.Mouse;
-import com.wasd.lib3d.input.WASDKeys;
+import com.wasd.lib3d.gui.input.Mouse;
+import com.wasd.lib3d.gui.input.WASDKeys;
 
 import javax.swing.JFrame;
 import java.awt.HeadlessException;

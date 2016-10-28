@@ -3,7 +3,8 @@ package com.wasd.lib3d.gui;
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
-import com.wasd.lib3d.input.Mouse;
+import com.wasd.lib3d.gui.input.Mouse;
+import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.rendering.GraphicsWrapper;
 import com.wasd.lib3d.rendering.Renderer;
 
@@ -43,7 +44,7 @@ public class Panel3D extends JPanel {
         switch (mode) {
             //TODO refactor
             case Mouse.LEFT_CLICK:
-                camera.relativeXYMovement(dx, dy);
+                camera.relativeMovement(dx, dy, 0);
                 break;
             case Mouse.RIGHT_CLICK:
                 camera.relativeRotation(dy, dx);
@@ -54,8 +55,17 @@ public class Panel3D extends JPanel {
         repaint();
     }
 
+    public void cameraXZMovement(Float2 delta) {
+        camera.relativeMovement(
+                delta.x * Settings.WASD_MOVEMENT_FACTOR,
+                0,
+                delta.y * Settings.WASD_MOVEMENT_FACTOR
+        );
+        repaint();
+    }
+
     public void onMouseScroll(float scrollAmount) {
-        camera.relativeZMovement(scrollAmount);
+        camera.relativeMovement(0, 0, scrollAmount);
         repaint();
     }
 

@@ -25,19 +25,16 @@ public class Camera {
         this.y = y;
     }
 
-    public void relativeXYMovement(float dx, float dy) {
+    public void relativeMovement(float dx, float dy, float dz) {
         x += dx;
         y += dy;
+        z += dz;
     }
 
     public void relativeRotation(float dx, float dy) {
         rotX += dx;
         rotZ += dy;
         rotX = Maths.clamp(rotX, MIN_ROT_X, MAX_ROT_X);
-    }
-
-    public void relativeZMovement(float dz) {
-        z += dz;
     }
 
     public float getX() {

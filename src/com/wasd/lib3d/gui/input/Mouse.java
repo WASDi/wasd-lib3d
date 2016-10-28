@@ -1,4 +1,4 @@
-package com.wasd.lib3d.input;
+package com.wasd.lib3d.gui.input;
 
 import com.wasd.lib3d.gui.Panel3D;
 
