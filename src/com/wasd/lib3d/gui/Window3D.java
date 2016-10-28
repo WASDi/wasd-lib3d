@@ -2,8 +2,8 @@ package com.wasd.lib3d.gui;
 
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
-import com.wasd.lib3d.input.Keyboard;
 import com.wasd.lib3d.input.Mouse;
+import com.wasd.lib3d.input.WASDKeys;
 
 import javax.swing.JFrame;
 import java.awt.HeadlessException;
@@ -23,7 +23,7 @@ public class Window3D extends JFrame {
         mouse = new Mouse(panel3D);
         panel3D.addFullMouseListener(mouse);
 
-        addKeyListener(new Keyboard());
+        WASDKeys.registerFor(panel3D);
     }
 
     public void makeVisible() {
