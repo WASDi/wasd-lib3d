@@ -1,6 +1,8 @@
 package com.wasd.lib3d.gui.input;
 
-import com.wasd.lib3d.gui.Panel3D;
+import com.wasd.lib3d.Settings;
+import com.wasd.lib3d.model.Float2;
+import com.wasd.lib3d.model.Float3;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,14 +15,14 @@ public class Mouse extends MouseAdapter {
     public static final int LEFT_CLICK = 1;
     public static final int RIGHT_CLICK = 3;
 
-    private final Panel3D cameraPanel;
+    private final CameraMovementListenerish cameraMovementListenerish;
 
     private int lastPosX = 0;
     private int lastPosY = 0;
     private int mode = 0;
 
-    public Mouse(Panel3D panelContainingCamera) {
-        this.cameraPanel = panelContainingCamera;
+    public Mouse(CameraMovementListenerish panelContainingCamera) {
+        this.cameraMovementListenerish = panelContainingCamera;
     }
 
     @Override
@@ -46,12 +48,19 @@ public class Mouse extends MouseAdapter {
         lastPosY = e.getY();
     }
 
-    private void relativeDrag(int dx, int dy) {
-        cameraPanel.onMouseDrag(dx, dy, mode);
+    private void relativeDrag(int dx_int, int dy_int) {
+        float dx = -dx_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
+        float dy = -dy_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
+        if (mode == LEFT_CLICK) {
+            cameraMovementListenerish.cameraMovement(new Float3(dx, dy, 0));
+        } else if (mode == RIGHT_CLICK) {
+            cameraMovementListenerish.cameraRotation(new Float2(dy, dx));
+        }
     }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        cameraPanel.onMouseScroll(-e.getWheelRotation() * e.getScrollAmount() * SCROLL_FACTOR);
+        float dz = -e.getWheelRotation() * e.getScrollAmount() * SCROLL_FACTOR;
+        cameraMovementListenerish.cameraMovement(new Float3(0, 0, dz));
     }
 }

@@ -30,4 +30,8 @@ public class Float3 {
     public Float2 getXY() {
         return new Float2(x, y);
     }
+
+    public Float3 times(float factor) {
+        return new Float3(x * factor, y * factor, z * factor);
+    }
 }

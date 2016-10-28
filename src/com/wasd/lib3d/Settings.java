@@ -14,7 +14,7 @@ public class Settings {
     public static final Projection PROJECTION = new WeakPerspective();
 
     public static final float RELATIVE_TO_ABSOLUTE_PIXEL_RATIO = 500;
-    public static final float WASD_MOVEMENT_FACTOR = .1f;
+    public static final float WASD_MOVEMENT_SPEED_FACTOR = .1f;
 
     public static final float FOG_START_DISTANCE = .5f;
     public static final float MAX_DISTANCE_TO_RENDER = 4f;

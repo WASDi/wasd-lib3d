@@ -1,28 +1,35 @@
 package com.wasd.lib3d.gui.input;
 
+import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.gui.Panel3D;
-import com.wasd.lib3d.model.Float2;
+import com.wasd.lib3d.model.Float3;
 
 import javax.swing.KeyStroke;
 
 public enum WASDKeys {
-    W('w', new Float2(0, 1)),
-    A('a', new Float2(-1, 0)),
-    S('s', new Float2(0, -1)),
-    D('d', new Float2(1, 0));
+    W('w', new Float3(0, 0, 1)),
+    A('a', new Float3(-1, 0, 0)),
+    S('s', new Float3(0, 0, -1)),
+    D('d', new Float3(1, 0, 0));
 
     public final char key;
-    public final Float2 xzMovementVector;
+    public final Float3 movementVector;
 
-    WASDKeys(char key, Float2 xzMovementVector) {
+    WASDKeys(char key, Float3 movementVector) {
         this.key = key;
-        this.xzMovementVector = xzMovementVector;
+        this.movementVector = movementVector;
     }
 
     public static void registerFor(Panel3D panel3D) {
         for (WASDKeys event : values()) {
             panel3D.getInputMap().put(KeyStroke.getKeyStroke(event.key), event);
-            panel3D.getActionMap().put(event, new MovementAction(event.xzMovementVector, panel3D));
+            panel3D.getActionMap().put(
+                    event,
+                    new MovementAction(
+                            event.movementVector.times(Settings.WASD_MOVEMENT_SPEED_FACTOR),
+                            panel3D
+                    )
+            );
         }
     }
 }

@@ -3,8 +3,9 @@ package com.wasd.lib3d.gui;
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
-import com.wasd.lib3d.gui.input.Mouse;
+import com.wasd.lib3d.gui.input.CameraMovementListenerish;
 import com.wasd.lib3d.model.Float2;
+import com.wasd.lib3d.model.Float3;
 import com.wasd.lib3d.rendering.GraphicsWrapper;
 import com.wasd.lib3d.rendering.Renderer;
 
@@ -12,7 +13,7 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 
-public class Panel3D extends JPanel {
+public class Panel3D extends JPanel implements CameraMovementListenerish {
 
     private final World world;
     private final Camera camera;
@@ -38,35 +39,15 @@ public class Panel3D extends JPanel {
         world.render(renderer, camera);
     }
 
-    public void onMouseDrag(int dx_int, int dy_int, int mode) {
-        float dx = -dx_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
-        float dy = -dy_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
-        switch (mode) {
-            //TODO refactor
-            case Mouse.LEFT_CLICK:
-                camera.relativeMovement(dx, dy, 0);
-                break;
-            case Mouse.RIGHT_CLICK:
-                camera.relativeRotation(dy, dx);
-                break;
-            default:
-                return;
-        }
+    @Override
+    public void cameraMovement(Float3 delta) {
+        camera.relativeMovement(delta.x, delta.y, delta.z);
         repaint();
     }
 
-    public void cameraXZMovement(Float2 delta) {
-        camera.relativeMovement(
-                delta.x * Settings.WASD_MOVEMENT_FACTOR,
-                0,
-                delta.y * Settings.WASD_MOVEMENT_FACTOR
-        );
+    @Override
+    public void cameraRotation(Float2 delta) {
+        camera.relativeRotation(delta.x, delta.y);
         repaint();
     }
-
-    public void onMouseScroll(float scrollAmount) {
-        camera.relativeMovement(0, 0, scrollAmount);
-        repaint();
-    }
-
 }

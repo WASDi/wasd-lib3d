@@ -1,23 +1,22 @@
 package com.wasd.lib3d.gui.input;
 
-import com.wasd.lib3d.gui.Panel3D;
-import com.wasd.lib3d.model.Float2;
+import com.wasd.lib3d.model.Float3;
 
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 
 public class MovementAction extends AbstractAction {
 
-    private final Float2 xzMovementVector;
-    private final Panel3D cameraPanel;
+    private final Float3 movementVector;
+    private final CameraMovementListenerish cameraMovementListenerish;
 
-    public MovementAction(Float2 xzMovementVector, Panel3D panelContainingCamera) {
-        this.xzMovementVector = xzMovementVector;
-        this.cameraPanel = panelContainingCamera;
+    public MovementAction(Float3 movementVector, CameraMovementListenerish cameraMovementListenerish) {
+        this.movementVector = movementVector;
+        this.cameraMovementListenerish = cameraMovementListenerish;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        cameraPanel.cameraXZMovement(xzMovementVector);
+        cameraMovementListenerish.cameraMovement(movementVector);
     }
 }
