@@ -25,7 +25,8 @@ public class Line implements Atom<FrameDataForLine> {
             return;
         }
 
-        frameData.setZDistanceFromCamera((fromDot.getPos().z + toDot.getPos().z) / 2f - camera.getZ());
+        frameData.setZDistanceFromCamera(
+                (fromDot.getFrameData().getZDistanceFromCamera() + toDot.getFrameData().getZDistanceFromCamera()) / 2f);
     }
 
     @Override

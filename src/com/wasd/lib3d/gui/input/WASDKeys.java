@@ -21,6 +21,9 @@ public enum WASDKeys {
     }
 
     public static void registerFor(Panel3D panel3D) {
+        //TODO http://stackoverflow.com/questions/22730715/java-keyboard-input-game-development
+        //Animation loop using Timer, which checks keyboard/mouse status AND the new Animation class for moving objects.
+        //maybe it can have a queue, and execute and clear it each loop. Possibly having nothing to render
         for (WASDKeys event : values()) {
             panel3D.getInputMap().put(KeyStroke.getKeyStroke(event.key), event);
             panel3D.getActionMap().put(
