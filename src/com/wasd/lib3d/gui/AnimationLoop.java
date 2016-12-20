@@ -28,7 +28,7 @@ public class AnimationLoop implements ActionListener {
         if (cameraMovementVector.isZero()) {
             return;
         }
-        camera.relativeMovement(cameraMovementVector);
+        camera.relativeMovementRespectRotation(cameraMovementVector);
         repaintThis.repaint();
     }
 

@@ -14,7 +14,7 @@ public class Camera {
     private float z;
 
     private float rotX;
-    private float rotZ;
+    private float rotY;
 
     public Camera() {
         this(0f, 0f);
@@ -31,9 +31,23 @@ public class Camera {
         z += dz;
     }
 
+    public void relativeMovementRespectRotation(Float3 delta) {
+        float cosRotX = Maths.cos(rotX);
+        float sinRotX = Maths.sin(rotX);
+
+        float cosRotY = Maths.cos(rotY);
+        float sinRotY = Maths.sin(rotY);
+
+        float dx = (delta.x * cosRotY + delta.z * sinRotY) * cosRotX;
+        float dy = delta.y + delta.z * sinRotX;
+        float dz = (-delta.x * sinRotY + delta.z * cosRotY) * cosRotX;
+
+        relativeMovement(dx, dy, dz);
+    }
+
     public void relativeRotation(float dx, float dy) {
         rotX += dx;
-        rotZ += dy;
+        rotY += dy;
         rotX = Maths.clamp(rotX, MIN_ROT_X, MAX_ROT_X);
     }
 
@@ -57,7 +71,7 @@ public class Camera {
     }
 
     public Float2 getRotation() {
-        return new Float2(rotX, rotZ);
+        return new Float2(rotX, rotY);
     }
 
     public void relativeMovement(Float3 delta) {
