@@ -14,12 +14,12 @@ public class Settings {
     public static final Projection PROJECTION = new WeakPerspective();
 
     public static final float RELATIVE_TO_ABSOLUTE_PIXEL_RATIO = 500;
-    public static final float WASD_MOVEMENT_SPEED_FACTOR = .1f;
+    public static final float MOVEMENT_MOVEMENT_SPEED_FACTOR = .01f;
 
     public static final float FOG_START_DISTANCE = .5f;
     public static final float MAX_DISTANCE_TO_RENDER = 4f;
 
     public static final int FONT_CACHE_SIZE = 1000;
 
-    public static final int ANIMATION_DELAY = 500;
+    public static final int ANIMATION_DELAY = 20;
 }

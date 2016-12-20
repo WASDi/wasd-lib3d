@@ -3,11 +3,13 @@ package com.wasd.lib3d.gui;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
 import com.wasd.lib3d.gui.input.Mouse;
-import com.wasd.lib3d.gui.input.WASDKeys;
+import com.wasd.lib3d.gui.input.MovementModifier;
+import com.wasd.lib3d.gui.input.WASDKey;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import java.awt.HeadlessException;
+import java.util.List;
 
 public class Window3D extends JFrame {
 
@@ -25,9 +27,10 @@ public class Window3D extends JFrame {
         mouse = new Mouse(panel3D);
         panel3D.addFullMouseListener(mouse);
 
-        WASDKeys.registerFor(panel3D);
+        List<MovementModifier> movementModifiers = WASDKey.generateMovementModifiers(panel3D);
+        AnimationLoop animationLoop = new AnimationLoop(panel3D, panel3D.getCamera(), movementModifiers);
 
-        animationTimer = new Timer(Settings.ANIMATION_DELAY, new AnimationLoop(panel3D, panel3D.getCamera()));
+        animationTimer = new Timer(Settings.ANIMATION_DELAY, animationLoop);
         animationTimer.start();
     }
 
