@@ -10,16 +10,19 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum WASDKey {
+public enum MovementKey {
     W(KeyEvent.VK_W, new Float3(0, 0, 1)),
     A(KeyEvent.VK_A, new Float3(-1, 0, 0)),
     S(KeyEvent.VK_S, new Float3(0, 0, -1)),
-    D(KeyEvent.VK_D, new Float3(1, 0, 0));
+    D(KeyEvent.VK_D, new Float3(1, 0, 0)),
+    SPACE(KeyEvent.VK_SPACE, new Float3(0, -1, 0));
+    //TODO add something to move down
+    //?DOWN(???, new Float3(0, 1, 0));
 
     public final int keyCode;
     public final Float3 movementVector;
 
-    WASDKey(int keyCode, Float3 movementVector) {
+    MovementKey(int keyCode, Float3 movementVector) {
         this.keyCode = keyCode;
         this.movementVector = movementVector;
     }
@@ -27,7 +30,7 @@ public enum WASDKey {
     public static List<MovementModifier> generateMovementModifiers(JComponent keyEventSource) {
         List<MovementModifier> modifiers = new ArrayList<>();
 
-        for (WASDKey key : values()) {
+        for (MovementKey key : values()) {
             MovementModifier movementModifier = new MovementModifier(key.movementVector);
             modifiers.add(movementModifier);
 
