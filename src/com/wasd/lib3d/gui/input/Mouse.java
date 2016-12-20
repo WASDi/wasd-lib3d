@@ -15,14 +15,14 @@ public class Mouse extends MouseAdapter {
     public static final int LEFT_CLICK = 1;
     public static final int RIGHT_CLICK = 3;
 
-    private final CameraMovementListenerish cameraMovementListenerish;
+    private final CameraMovementController cameraMovementController;
 
     private int lastPosX = 0;
     private int lastPosY = 0;
     private int mode = 0;
 
-    public Mouse(CameraMovementListenerish panelContainingCamera) {
-        this.cameraMovementListenerish = panelContainingCamera;
+    public Mouse(CameraMovementController panelContainingCamera) {
+        this.cameraMovementController = panelContainingCamera;
     }
 
     @Override
@@ -52,15 +52,15 @@ public class Mouse extends MouseAdapter {
         float dx = -dx_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
         float dy = -dy_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
         if (mode == LEFT_CLICK) {
-            cameraMovementListenerish.cameraRotation(new Float2(dy, dx));
+            cameraMovementController.cameraRotation(new Float2(dy, dx));
         } else if (mode == RIGHT_CLICK) {
-            cameraMovementListenerish.cameraMovement(new Float3(dx, dy, 0));
+            cameraMovementController.cameraMovement(new Float3(dx, dy, 0));
         }
     }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         float dz = -e.getWheelRotation() * e.getScrollAmount() * SCROLL_FACTOR;
-        cameraMovementListenerish.cameraMovement(new Float3(0, 0, dz));
+        cameraMovementController.cameraMovement(new Float3(0, 0, dz));
     }
 }

@@ -3,7 +3,7 @@ package com.wasd.lib3d.gui;
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
-import com.wasd.lib3d.gui.input.CameraMovementListenerish;
+import com.wasd.lib3d.gui.input.CameraMovementController;
 import com.wasd.lib3d.misc.Maths;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 
-public class Panel3D extends JPanel implements CameraMovementListenerish {
+public class Panel3D extends JPanel implements CameraMovementController {
 
     private final World world;
     private final Camera camera;

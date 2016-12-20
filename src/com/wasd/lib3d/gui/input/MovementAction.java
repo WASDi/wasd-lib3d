@@ -8,15 +8,15 @@ import java.awt.event.ActionEvent;
 public class MovementAction extends AbstractAction {
 
     private final Float3 movementVector;
-    private final CameraMovementListenerish cameraMovementListenerish;
+    private final CameraMovementController cameraMovementController;
 
-    public MovementAction(Float3 movementVector, CameraMovementListenerish cameraMovementListenerish) {
+    public MovementAction(Float3 movementVector, CameraMovementController cameraMovementController) {
         this.movementVector = movementVector;
-        this.cameraMovementListenerish = cameraMovementListenerish;
+        this.cameraMovementController = cameraMovementController;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        cameraMovementListenerish.cameraMovement(movementVector);
+        cameraMovementController.cameraMovement(movementVector);
     }
 }
