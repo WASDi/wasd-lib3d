@@ -38,9 +38,9 @@ public class Camera {
         float cosRotY = Maths.cos(rotY);
         float sinRotY = Maths.sin(rotY);
 
-        float dx = (delta.x * cosRotY + delta.z * sinRotY) * cosRotX;
+        float dx = delta.x * cosRotY + (delta.z * sinRotY * cosRotX);
         float dy = delta.y + delta.z * sinRotX;
-        float dz = (-delta.x * sinRotY + delta.z * cosRotY) * cosRotX;
+        float dz = -delta.x * sinRotY + (delta.z * cosRotY * cosRotX);
 
         relativeMovement(dx, dy, dz);
     }
