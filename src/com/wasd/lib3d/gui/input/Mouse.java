@@ -52,9 +52,9 @@ public class Mouse extends MouseAdapter {
         float dx = -dx_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
         float dy = -dy_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
         if (mode == LEFT_CLICK) {
-            cameraMovementListenerish.cameraMovement(new Float3(dx, dy, 0));
-        } else if (mode == RIGHT_CLICK) {
             cameraMovementListenerish.cameraRotation(new Float2(dy, dx));
+        } else if (mode == RIGHT_CLICK) {
+            cameraMovementListenerish.cameraMovement(new Float3(dx, dy, 0));
         }
     }
 
