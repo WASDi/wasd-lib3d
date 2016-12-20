@@ -4,6 +4,7 @@ import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
 import com.wasd.lib3d.gui.input.CameraMovementListenerish;
+import com.wasd.lib3d.misc.Maths;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
 import com.wasd.lib3d.rendering.GraphicsWrapper;
@@ -41,7 +42,17 @@ public class Panel3D extends JPanel implements CameraMovementListenerish {
 
     @Override
     public void cameraMovement(Float3 delta) {
-        camera.relativeMovement(delta.x, delta.y, delta.z);
+        float cosRotX = Maths.cos(camera.getRotation().x);
+        float sinRotX = Maths.sin(camera.getRotation().x);
+
+        float cosRotY = Maths.cos(camera.getRotation().y);
+        float sinRotY = Maths.sin(camera.getRotation().y);
+
+        float dx = (delta.x * cosRotY + delta.z * sinRotY) * cosRotX;
+        float dy = delta.y + delta.z * sinRotX;
+        float dz = (-delta.x * sinRotY + delta.z * cosRotY) * cosRotX;
+
+        camera.relativeMovement(dx, dy, dz);
         repaint();
     }
 
