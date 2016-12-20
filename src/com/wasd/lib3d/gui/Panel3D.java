@@ -61,4 +61,8 @@ public class Panel3D extends JPanel implements CameraMovementController {
         camera.relativeRotation(delta.x, delta.y);
         repaint();
     }
+
+    public Camera getCamera() {
+        return camera;
+    }
 }

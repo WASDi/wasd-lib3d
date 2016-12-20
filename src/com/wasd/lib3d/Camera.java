@@ -59,4 +59,8 @@ public class Camera {
     public Float2 getRotation() {
         return new Float2(rotX, rotZ);
     }
+
+    public void relativeMovement(Float3 delta) {
+        relativeMovement(delta.x, delta.y, delta.z);
+    }
 }

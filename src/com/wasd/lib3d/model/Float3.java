@@ -4,6 +4,8 @@ import com.wasd.lib3d.misc.Maths;
 
 public class Float3 {
 
+    public static final Float3 ZERO = new Float3(0, 0, 0);
+
     public final float x;
     public final float y;
     public final float z;
@@ -33,5 +35,9 @@ public class Float3 {
 
     public Float3 times(float factor) {
         return new Float3(x * factor, y * factor, z * factor);
+    }
+
+    public boolean isZero() {
+        return x == 0 && y == 0 && z == 0;
     }
 }
