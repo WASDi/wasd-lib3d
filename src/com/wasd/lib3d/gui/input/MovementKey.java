@@ -6,6 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,17 @@ public enum MovementKey {
     A(KeyEvent.VK_A, new Float3(-1, 0, 0)),
     S(KeyEvent.VK_S, new Float3(0, 0, -1)),
     D(KeyEvent.VK_D, new Float3(1, 0, 0)),
-    SPACE(KeyEvent.VK_SPACE, new Float3(0, -1, 0));
-    //TODO add something to move down
-    //?DOWN(???, new Float3(0, 1, 0));
+    SPACE(KeyEvent.VK_SPACE, new Float3(0, -1, 0)),
+    DOWN(KeyEvent.VK_CONTROL, new Float3(0, 1, 0)) {
+        @Override
+        KeyStroke getKeyStroke(boolean press) {
+            //CTRL is special
+            if (press) {
+                return KeyStroke.getKeyStroke(keyCode, InputEvent.CTRL_DOWN_MASK, false);
+            }
+            return KeyStroke.getKeyStroke("released CONTROL");
+        }
+    };
 
     public final int keyCode;
     public final Float3 movementVector;
@@ -34,11 +43,11 @@ public enum MovementKey {
             MovementModifier movementModifier = new MovementModifier(key.movementVector);
             modifiers.add(movementModifier);
 
-            KeyStroke keyPressed = KeyStroke.getKeyStroke(key.keyCode, 0, false);
-            KeyStroke keyReleased = KeyStroke.getKeyStroke(key.keyCode, 0, true);
+            KeyStroke keyPressed = key.getKeyStroke(true);
+            KeyStroke keyReleased = key.getKeyStroke(false);
 
-            String pressCode = movementModifier.toString() + ".PRESS";
-            String releaseCode = movementModifier.toString() + ".RELEASE";
+            String pressCode = key.keyCode + ".PRESS";
+            String releaseCode = key.keyCode + ".RELEASE";
 
             keyEventSource.getInputMap().put(keyPressed, pressCode);
             keyEventSource.getInputMap().put(keyReleased, releaseCode);
@@ -47,6 +56,10 @@ public enum MovementKey {
             keyEventSource.getActionMap().put(releaseCode, new MovementModifierActiveSetter(movementModifier, false));
         }
         return modifiers;
+    }
+
+    KeyStroke getKeyStroke(boolean press) {
+        return KeyStroke.getKeyStroke(keyCode, 0, !press);
     }
 
     private static class MovementModifierActiveSetter extends AbstractAction {
