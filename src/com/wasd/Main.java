@@ -20,7 +20,6 @@ public class Main {
         addSomeBoxes(world);
         world.add(new Sphere(-.15f, .15f, .8f, .5f).withDotColor(Color.GREEN).withLineColor(Color.BLUE));
         world.add(new Plot(.5f, .3f, .8f, .5f, Functions.gaussian).withDotColor(Color.GREEN).withLineColor(Color.YELLOW));
-        world.add(new Sphere(.5f, -.3f, .8f, .3f).withDotColor(Color.BLUE).withLineColor(Color.PINK));
 
         world.add(new Box(-.2f, -1f, .5f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
         world.add(new Box(.2f, -1f, .5f, .1f).withDotColor(Color.BLUE).withLineColor(Color.WHITE));
