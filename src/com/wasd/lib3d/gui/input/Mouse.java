@@ -1,6 +1,7 @@
 package com.wasd.lib3d.gui.input;
 
 import com.wasd.lib3d.Settings;
+import com.wasd.lib3d.gui.CursorVisibilityController;
 import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.model.Float3;
 
@@ -20,6 +21,7 @@ public class Mouse extends MouseAdapter {
     public static final int RIGHT_CLICK = 3;
 
     private final CameraMovementController cameraMovementController;
+    private final CursorVisibilityController cursorVisibilityController;
 
     private int lastPosX = 0;
     private int lastPosY = 0;
@@ -29,8 +31,9 @@ public class Mouse extends MouseAdapter {
     private boolean grabMouseMode; //TODO should be a strategy
     private Point grabPosOnScreen;
 
-    public Mouse(CameraMovementController panelContainingCamera) {
+    public Mouse(CameraMovementController panelContainingCamera, CursorVisibilityController cursorVisibilityController) {
         this.cameraMovementController = panelContainingCamera;
+        this.cursorVisibilityController = cursorVisibilityController;
         try {
             robot = new Robot();
         } catch (AWTException e) {
@@ -46,6 +49,7 @@ public class Mouse extends MouseAdapter {
         if (mode == MIDDLE_CLICK) {
             grabMouseMode = !grabMouseMode;
             grabPosOnScreen = e.getLocationOnScreen();
+            cursorVisibilityController.setVisible(!grabMouseMode);
         }
     }
 

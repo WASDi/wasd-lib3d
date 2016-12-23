@@ -8,7 +8,11 @@ import com.wasd.lib3d.gui.input.MovementModifier;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.WindowConstants;
+import java.awt.Cursor;
 import java.awt.HeadlessException;
+import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 public class Window3D extends JFrame {
@@ -22,9 +26,12 @@ public class Window3D extends JFrame {
         setSize(Settings.WINDOW_SIZE);
         panel3D = new Panel3D(world);
         add(panel3D);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        mouse = new Mouse(panel3D);
+        mouse = new Mouse(panel3D,
+                          new CursorVisibilityController(getCursor(),
+                                                         getInvisibleCursor(),
+                                                         this::setCursor));
         panel3D.addFullMouseListener(mouse);
 
         List<MovementModifier> movementModifiers = MovementKey.generateMovementModifiers(panel3D);
@@ -32,6 +39,14 @@ public class Window3D extends JFrame {
 
         animationTimer = new Timer(Settings.ANIMATION_DELAY, animationLoop);
         animationTimer.start();
+    }
+
+    private Cursor getInvisibleCursor() {
+        return getToolkit()
+                .createCustomCursor(
+                        new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
+                        new Point(0, 0),
+                        "null");
     }
 
     public void makeVisible() {
