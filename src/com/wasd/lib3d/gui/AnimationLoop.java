@@ -49,9 +49,9 @@ public class AnimationLoop implements ActionListener {
             return Float3.ZERO;
         }
 
-        dx *= Settings.MOVEMENT_MOVEMENT_SPEED_FACTOR;
-        dy *= Settings.MOVEMENT_MOVEMENT_SPEED_FACTOR;
-        dz *= Settings.MOVEMENT_MOVEMENT_SPEED_FACTOR;
+        dx *= Settings.MOVEMENT_SPEED_FACTOR;
+        dy *= Settings.MOVEMENT_SPEED_FACTOR;
+        dz *= Settings.MOVEMENT_SPEED_FACTOR;
 
         return new Float3(dx, dy, dz);
     }
