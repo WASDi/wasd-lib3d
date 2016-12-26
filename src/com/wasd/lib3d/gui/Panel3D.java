@@ -5,7 +5,6 @@ import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
 import com.wasd.lib3d.gui.input.CameraMovementController;
 import com.wasd.lib3d.model.Float2;
-import com.wasd.lib3d.model.Float3;
 import com.wasd.lib3d.rendering.GraphicsWrapper;
 import com.wasd.lib3d.rendering.Renderer;
 
@@ -40,15 +39,9 @@ public class Panel3D extends JPanel implements CameraMovementController {
     }
 
     @Override
-    public void cameraMovement(Float3 delta) {
-        camera.relativeMovementRespectRotation(delta);
-        repaint();
-    }
-
-    @Override
     public void cameraRotation(Float2 delta) {
         camera.relativeRotation(delta.x, delta.y);
-        repaint();
+        repaint(); //IMPORTANT TODO repaint in animation loop instead of here. GREAT PERFORMANCE BOOST
     }
 
     public Camera getCamera() {

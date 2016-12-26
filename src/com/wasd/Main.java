@@ -1,6 +1,7 @@
 package com.wasd;
 
 import com.wasd.lib3d.World;
+import com.wasd.lib3d.animation.Animation;
 import com.wasd.lib3d.gui.Window3D;
 import com.wasd.lib3d.misc.Functions;
 import com.wasd.lib3d.objects.Box;
@@ -9,6 +10,8 @@ import com.wasd.lib3d.objects.Sphere;
 import com.wasd.lib3d.objects.Text;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -34,7 +37,9 @@ public class Main {
 
         world.add(new Text(0f, 0f, .5f, "DEBUG"));
 
-        Window3D wasdWindow = new Window3D(world);
+        List<Animation> animations = new ArrayList<>();
+
+        Window3D wasdWindow = new Window3D(world, animations);
 
         wasdWindow.makeVisible();
     }

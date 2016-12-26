@@ -2,6 +2,7 @@ package com.wasd.lib3d.gui;
 
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
+import com.wasd.lib3d.animation.Animation;
 import com.wasd.lib3d.gui.input.Mouse;
 import com.wasd.lib3d.gui.input.MovementKey;
 import com.wasd.lib3d.gui.input.MovementModifier;
@@ -21,7 +22,7 @@ public class Window3D extends JFrame {
     private final Mouse mouse;
     private final Timer animationTimer;
 
-    public Window3D(World world) throws HeadlessException {
+    public Window3D(World world, List<Animation> animations) throws HeadlessException {
         super("WASD 3D Window");
         setSize(Settings.WINDOW_SIZE);
         panel3D = new Panel3D(world);
@@ -35,7 +36,10 @@ public class Window3D extends JFrame {
         panel3D.addFullMouseListener(mouse);
 
         List<MovementModifier> movementModifiers = MovementKey.generateMovementModifiers(panel3D);
-        AnimationLoop animationLoop = new AnimationLoop(panel3D, panel3D.getCamera(), movementModifiers);
+        AnimationLoop animationLoop = new AnimationLoop(panel3D::repaint,
+                                                        panel3D.getCamera(),
+                                                        movementModifiers,
+                                                        animations);
 
         animationTimer = new Timer(Settings.ANIMATION_DELAY, animationLoop);
         animationTimer.start();
