@@ -42,7 +42,7 @@ public class Window3D extends JFrame {
         panel3D.addFullMouseListener(mouse);
 
         AnimationLoop animationLoop = new AnimationLoop(panel3D::repaint, animations);
-        animationTimer = new Timer(Settings.ANIMATION_DELAY, animationLoop);
+        animationTimer = new Timer(Settings.ANIMATION_DELAY_MILLIS, animationLoop);
         animationTimer.start();
     }
 

@@ -45,10 +45,7 @@ public class CameraMovementAnimation implements Animation {
             return Float3.ZERO;
         }
 
-        dx *= Settings.MOVEMENT_SPEED_FACTOR * deltaTime;
-        dy *= Settings.MOVEMENT_SPEED_FACTOR * deltaTime;
-        dz *= Settings.MOVEMENT_SPEED_FACTOR * deltaTime;
-
-        return new Float3(dx, dy, dz);
+        return new Float3(dx, dy, dz)
+                .times(Settings.MOVEMENT_SPEED_FACTOR * deltaTime);
     }
 }

@@ -6,6 +6,8 @@ import java.util.List;
 
 public class AnimationLoop implements ActionListener {
 
+    private static final float NANOS_TO_SECONDS_FACTOR = 1e-9f;
+
     private final Runnable repaintFunction;
     private final List<Animation> animations;
 
@@ -26,8 +28,8 @@ public class AnimationLoop implements ActionListener {
             return; //Don't repaint first frame with zero delta.
         }
 
-        float absoluteTime = (thisFrameStartTime - startTime) / 1e9f;
-        float deltaTime = (thisFrameStartTime - lastFrameStartTime) / 1e9f;
+        float absoluteTime = (thisFrameStartTime - startTime) * NANOS_TO_SECONDS_FACTOR;
+        float deltaTime = (thisFrameStartTime - lastFrameStartTime) * NANOS_TO_SECONDS_FACTOR;
 
         boolean repaintNeeded = false;
         for (Animation animation : animations) {

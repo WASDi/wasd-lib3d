@@ -65,8 +65,8 @@ public class Mouse extends MouseAdapter {
     }
 
     private void rotateCamera(int dx_int, int dy_int) {
-        float dx = dx_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
-        float dy = dy_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
+        float dx = dx_int * Settings.CAMERA_ROTATION_SPEED_FACTOR;
+        float dy = dy_int * Settings.CAMERA_ROTATION_SPEED_FACTOR;
         cameraRotationAnimation.rotate(new Float2(dy, dx));
     }
 }
