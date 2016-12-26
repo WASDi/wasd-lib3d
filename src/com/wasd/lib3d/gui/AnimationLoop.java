@@ -22,7 +22,7 @@ public class AnimationLoop implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         boolean repaintNeeded = false;
         for (Animation animation : animations) {
-            repaintNeeded |= animation.step(1f / Settings.ANIMATION_DELAY); //TODO calculate exact step
+            repaintNeeded |= animation.step(Settings.ANIMATION_DELAY / 1000f); //TODO calculate exact time
         }
 
         if (repaintNeeded) {

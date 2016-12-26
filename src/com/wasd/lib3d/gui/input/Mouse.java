@@ -17,9 +17,9 @@ public class Mouse extends MouseAdapter {
 
     private final CameraRotationAnimation cameraRotationAnimation;
     private final CursorVisibilityController cursorVisibilityController;
+    private final Robot robot;
 
     private boolean grabMouseMode;
-    private final Robot robot;
     private Point grabPosOnScreen;
 
     public Mouse(CameraRotationAnimation cameraRotationAnimation, CursorVisibilityController cursorVisibilityController) {
