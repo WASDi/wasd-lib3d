@@ -3,8 +3,9 @@ package com.wasd.lib3d.animation;
 public interface Animation {
 
     /**
-     * @param t time in seconds for frame
+     * @param absoluteTime time in seconds since first frame
+     * @param deltaTime    time in seconds last frame was visible
      * @return true if repaint needed
      */
-    boolean step(float t);
+    boolean step(float absoluteTime, float deltaTime);
 }

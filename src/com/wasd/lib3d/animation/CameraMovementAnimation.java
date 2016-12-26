@@ -18,8 +18,8 @@ public class CameraMovementAnimation implements Animation {
     }
 
     @Override
-    public boolean step(float t) {
-        Float3 cameraMovementVector = getCameraMovementVector(t);
+    public boolean step(float absoluteTime, float deltaTime) {
+        Float3 cameraMovementVector = getCameraMovementVector(deltaTime);
         if (cameraMovementVector.isZero()) {
             return false;
         }
@@ -28,7 +28,7 @@ public class CameraMovementAnimation implements Animation {
         return true;
     }
 
-    private Float3 getCameraMovementVector(float t) {
+    private Float3 getCameraMovementVector(float deltaTime) {
         float dx = 0;
         float dy = 0;
         float dz = 0;
@@ -45,9 +45,9 @@ public class CameraMovementAnimation implements Animation {
             return Float3.ZERO;
         }
 
-        dx *= Settings.MOVEMENT_SPEED_FACTOR * t;
-        dy *= Settings.MOVEMENT_SPEED_FACTOR * t;
-        dz *= Settings.MOVEMENT_SPEED_FACTOR * t;
+        dx *= Settings.MOVEMENT_SPEED_FACTOR * deltaTime;
+        dy *= Settings.MOVEMENT_SPEED_FACTOR * deltaTime;
+        dz *= Settings.MOVEMENT_SPEED_FACTOR * deltaTime;
 
         return new Float3(dx, dy, dz);
     }

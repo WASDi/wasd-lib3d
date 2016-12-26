@@ -3,6 +3,7 @@ package com.wasd.lib3d.gui;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
 import com.wasd.lib3d.animation.Animation;
+import com.wasd.lib3d.animation.AnimationLoop;
 import com.wasd.lib3d.animation.CameraMovementAnimation;
 import com.wasd.lib3d.animation.CameraRotationAnimation;
 import com.wasd.lib3d.gui.input.Mouse;

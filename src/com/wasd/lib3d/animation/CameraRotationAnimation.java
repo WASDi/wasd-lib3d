@@ -13,7 +13,7 @@ public class CameraRotationAnimation implements Animation {
     }
 
     @Override
-    public boolean step(float t) {
+    public boolean step(float absoluteTime, float deltaTime) {
         if (renderNeeded) {
             renderNeeded = false;
             return true;
