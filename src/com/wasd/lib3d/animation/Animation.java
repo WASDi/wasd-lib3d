@@ -1,5 +1,10 @@
 package com.wasd.lib3d.animation;
 
 public interface Animation {
-    void step(float t);
+
+    /**
+     * @param t time in seconds for frame
+     * @return true if repaint needed
+     */
+    boolean step(float t);
 }

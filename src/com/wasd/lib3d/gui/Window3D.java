@@ -3,6 +3,7 @@ package com.wasd.lib3d.gui;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
 import com.wasd.lib3d.animation.Animation;
+import com.wasd.lib3d.animation.CameraMovementAnimation;
 import com.wasd.lib3d.gui.input.Mouse;
 import com.wasd.lib3d.gui.input.MovementKey;
 import com.wasd.lib3d.gui.input.MovementModifier;
@@ -36,10 +37,10 @@ public class Window3D extends JFrame {
         panel3D.addFullMouseListener(mouse);
 
         List<MovementModifier> movementModifiers = MovementKey.generateMovementModifiers(panel3D);
-        AnimationLoop animationLoop = new AnimationLoop(panel3D::repaint,
-                                                        panel3D.getCamera(),
-                                                        movementModifiers,
-                                                        animations);
+        CameraMovementAnimation cameraMovementAnimation = new CameraMovementAnimation(panel3D.getCamera(), movementModifiers);
+        animations.add(cameraMovementAnimation);
+
+        AnimationLoop animationLoop = new AnimationLoop(panel3D::repaint, animations);
 
         animationTimer = new Timer(Settings.ANIMATION_DELAY, animationLoop);
         animationTimer.start();
