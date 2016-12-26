@@ -45,9 +45,9 @@ public class Camera {
         relativeMovement(dx, dy, dz);
     }
 
-    public void relativeRotation(float dx, float dy) {
-        rotX += dx;
-        rotY += dy;
+    public void relativeRotation(Float2 delta) {
+        rotX += delta.x;
+        rotY += delta.y;
         rotX = Maths.clamp(rotX, MIN_ROT_X, MAX_ROT_X);
     }
 
@@ -74,7 +74,4 @@ public class Camera {
         return new Float2(rotX, rotY);
     }
 
-    public void relativeMovement(Float3 delta) {
-        relativeMovement(delta.x, delta.y, delta.z);
-    }
 }

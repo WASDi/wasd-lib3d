@@ -1,6 +1,7 @@
 package com.wasd.lib3d.gui.input;
 
 import com.wasd.lib3d.Settings;
+import com.wasd.lib3d.animation.CameraRotationAnimation;
 import com.wasd.lib3d.gui.CursorVisibilityController;
 import com.wasd.lib3d.model.Float2;
 
@@ -14,15 +15,15 @@ public class Mouse extends MouseAdapter {
 
     private static final int MIDDLE_CLICK = 2;
 
-    private final CameraMovementController cameraMovementController;
+    private final CameraRotationAnimation cameraRotationAnimation;
     private final CursorVisibilityController cursorVisibilityController;
 
     private boolean grabMouseMode;
     private final Robot robot;
     private Point grabPosOnScreen;
 
-    public Mouse(CameraMovementController panelContainingCamera, CursorVisibilityController cursorVisibilityController) {
-        this.cameraMovementController = panelContainingCamera;
+    public Mouse(CameraRotationAnimation cameraRotationAnimation, CursorVisibilityController cursorVisibilityController) {
+        this.cameraRotationAnimation = cameraRotationAnimation;
         this.cursorVisibilityController = cursorVisibilityController;
         try {
             robot = new Robot();
@@ -66,6 +67,6 @@ public class Mouse extends MouseAdapter {
     private void rotateCamera(int dx_int, int dy_int) {
         float dx = dx_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
         float dy = dy_int / Settings.RELATIVE_TO_ABSOLUTE_PIXEL_RATIO;
-        cameraMovementController.cameraRotation(new Float2(dy, dx));
+        cameraRotationAnimation.rotate(new Float2(dy, dx));
     }
 }

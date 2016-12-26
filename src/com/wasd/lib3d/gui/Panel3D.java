@@ -3,8 +3,6 @@ package com.wasd.lib3d.gui;
 import com.wasd.lib3d.Camera;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.World;
-import com.wasd.lib3d.gui.input.CameraMovementController;
-import com.wasd.lib3d.model.Float2;
 import com.wasd.lib3d.rendering.GraphicsWrapper;
 import com.wasd.lib3d.rendering.Renderer;
 
@@ -12,7 +10,7 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 
-public class Panel3D extends JPanel implements CameraMovementController {
+public class Panel3D extends JPanel {
 
     private final World world;
     private final Camera camera;
@@ -36,12 +34,6 @@ public class Panel3D extends JPanel implements CameraMovementController {
 
         Renderer renderer = new Renderer(new GraphicsWrapper(graphics), getWidth(), getHeight());
         world.render(renderer, camera);
-    }
-
-    @Override
-    public void cameraRotation(Float2 delta) {
-        camera.relativeRotation(delta.x, delta.y);
-        repaint(); //IMPORTANT TODO repaint in animation loop instead of here. GREAT PERFORMANCE BOOST
     }
 
     public Camera getCamera() {
