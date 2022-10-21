@@ -12,3 +12,7 @@ plugins {
 application {
     mainClass.set("com.wasd.Main")
 }
+
+base {
+    archivesName.set("wasd-lib3d")
+}
