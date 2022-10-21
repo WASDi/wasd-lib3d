@@ -1,6 +1,5 @@
 package com.wasd.lib3d.rendering;
 
-import com.sun.istack.internal.Nullable;
 import com.wasd.lib3d.Settings;
 import com.wasd.lib3d.objects.atoms.framedata.FrameData;
 
@@ -11,7 +10,6 @@ public class Colors {
     /**
      * @return null if too far away and should not be drawn.
      */
-    @Nullable
     static Color colorBasedOnDistance(FrameData frameData) {
         float zDistance = frameData.getZDistanceFromCamera();
         Color oldColor = frameData.getColor();
